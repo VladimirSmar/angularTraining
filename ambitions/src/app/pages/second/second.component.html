@@ -1,0 +1,71 @@
+<div class="secondPageComponents">
+  <div class="secondPageComponent">
+    <section>
+      <div class="example-label">Cute icons</div>
+      <div class="example-button-row">
+        <div class="example-flex-container">
+          <div class="example-button-container">
+            <button
+              mat-fab
+              color="primary"
+              aria-label="Example icon button with a delete icon"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <div class="example-button-container">
+            <button
+              mat-fab
+              color="accent"
+              aria-label="Example icon button with a bookmark icon"
+            >
+              <mat-icon>bookmark</mat-icon>
+            </button>
+          </div>
+          <div class="example-button-container">
+            <button
+              mat-fab
+              color="warn"
+              aria-label="Example icon button with a home icon"
+            >
+              <mat-icon>home</mat-icon>
+            </button>
+          </div>
+          <div class="example-button-container">
+            <button
+              mat-fab
+              disabled
+              aria-label="Example icon button with a heart icon"
+            >
+              <mat-icon>favorite</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="secondPageComponent">
+    <mat-button-toggle-group #group="matButtonToggleGroup">
+      <mat-button-toggle value="left" aria-label="Text align left">
+        <mat-icon>format_align_left</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="center" aria-label="Text align center">
+        <mat-icon>format_align_center</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="right" aria-label="Text align right">
+        <mat-icon>format_align_right</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle
+        value="justify"
+        disabled
+        aria-label="Text align justify"
+      >
+        <mat-icon>format_align_justify</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <div class="example-selected-value">Selected value: {{ group.value }}</div>
+  </div>
+  <div class="secondPageComponent">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+.thirdPageComponents {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 20px;
+}
+
+.thirdPageComponent {
+  margin: 20px;
+}
+
+.example-h2 {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 10px;
+}
