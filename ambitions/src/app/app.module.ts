@@ -6,44 +6,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatCardModule } from '@angular/material/card';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle'
-
-import { FirstComponent } from './pages/first/first.component';
-import { SecondComponent } from './pages/second/second.component';
 import { ThirdComponent } from './pages/third/third.component';
 
+import { FirstModule } from './pages/first/first.module';
+import { SecondModule } from './pages/second/second.module';
+
 @NgModule({
-  declarations: [AppComponent, FirstComponent, SecondComponent, ThirdComponent],
+  declarations: [AppComponent, ThirdComponent],
   imports: [
     BrowserModule,
-    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatExpansionModule,
-    MatTabsModule,
-    MatGridListModule,
-    MatIconModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatProgressBarModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatCardModule,
-    MatRadioModule,
-    MatCheckboxModule,
-    MatSlideToggleModule
+    FirstModule,
+    SecondModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

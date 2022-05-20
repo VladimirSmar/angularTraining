@@ -1,43 +1,14 @@
-.secondPageComponents {
+.binding-example {
+  margin: 10px;
+  padding: 10px;
   display: flex;
-  flex: 1 1 0;
   flex-direction: column;
-  flex-wrap: nowrap;
-  padding: 20px;
 }
 
-.secondPageComponent {
-  margin: 20px;
+.binding-example_two-way {
+  margin: 10px;
 }
 
-section {
-  display: table;
-}
-
-.example-label {
-  display: table-cell;
-  font-size: 14px;
-  margin-left: 8px;
-  min-width: 120px;
-}
-
-.example-button-row {
-  display: table-cell;
-  width: 490px;
-}
-
-.example-button-row .mat-button-base {
-  margin: 8px 8px 8px 0;
-}
-
-.example-flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.example-button-container {
-  display: flex;
-  justify-content: center;
-  width: 120px;
+.binding-example_one-way {
+  margin-top: 10px;
 }

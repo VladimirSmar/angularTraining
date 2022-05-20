@@ -1,23 +1,29 @@
-<div class="firstPageComponents">
-  <mat-tab-group>
-    <mat-tab label="First Component">
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title> This is the expansion title </mat-panel-title>
-          <mat-panel-description>
-            This is a summary of the content
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <p>This is the primary content of the panel.</p>
-      </mat-expansion-panel>
-    </mat-tab>
-    <mat-tab label="Second Component"
-      ><mat-grid-list cols="2" rowHeight="2:1">
-        <mat-grid-tile>1</mat-grid-tile>
-        <mat-grid-tile>2</mat-grid-tile>
-        <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>
-      </mat-grid-list>
-    </mat-tab>
-  </mat-tab-group>
+<div class="cards-container">
+  <div>
+    <button (click)="toggleDeactivatedUsersHidden()">
+      Hide Deactivated (Hidden)
+    </button>
+    <button (click)="toggleDeactivatedUsersVisibility()">
+      Hide Deactivated (NgIf)
+    </button>
+  </div>
+  <div class="cards">
+    <ng-container *ngFor="let user of users">
+      <div [style.visibility]="isDeactivatedUsersHidden ? 'visible' : user.activated? 'visible' : 'hidden'">
+        <ng-container *ngIf="isDeactivatedUsersShown ? true : user.activated"
+          ><mat-card class="card" [hidden]="true">
+            <div class="user-name">{{ user.name }}</div>
+            <div class="user-age">Age {{ user.age }}</div>
+            <div class="isActivated">{{ user.activated }}</div>
+            <button
+              (click)="this.deactivateUser(user)"
+              [disabled]="!user.activated"
+            >
+              Deactivate
+            </button>
+          </mat-card></ng-container
+        >
+      </div>
+    </ng-container>
+  </div>
 </div>

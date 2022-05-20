@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SecondComponent implements OnInit {
 
+  bindingValue: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
