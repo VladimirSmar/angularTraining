@@ -12,9 +12,9 @@
       <div [style.visibility]="isDeactivatedUsersHidden ? 'visible' : user.activated? 'visible' : 'hidden'">
         <ng-container *ngIf="isDeactivatedUsersShown ? true : user.activated"
           ><mat-card class="card" [hidden]="true">
-            <div class="user-name">{{ user.name }}</div>
-            <div class="user-age">Age {{ user.age }}</div>
-            <div class="isActivated">{{ user.activated }}</div>
+            <div>{{ user.name }}</div>
+            <div>Age {{ user.age }}</div>
+            <div>{{ user.activated? 'Active' : 'Non-Active' }}</div>
             <button
               (click)="this.deactivateUser(user)"
               [disabled]="!user.activated"
