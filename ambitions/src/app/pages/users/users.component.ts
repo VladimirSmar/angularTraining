@@ -28,7 +28,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  logChildOutputEvent(userName: string) {
+  logChildOutputEvent(userName: string): void {
     alert(userName);
   }
 }
