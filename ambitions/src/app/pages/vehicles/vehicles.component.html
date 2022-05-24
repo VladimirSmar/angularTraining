@@ -1,0 +1,11 @@
+<div class="vehicles">
+  <ng-container *ngFor="let vehicle of vehicles">
+    <app-vehicle>
+      <div class="vehicle-model">{{ vehicle.model }}</div>
+      <div class="vehicle-info">
+        <div>Produced in {{ vehicle.productionYear }}</div>
+        <div>Price: {{ vehicle.price }} $</div>
+      </div>
+    </app-vehicle>
+  </ng-container>
+</div>
