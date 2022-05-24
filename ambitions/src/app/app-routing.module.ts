@@ -2,23 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { FirstComponent } from './pages/first/first.component';
-import { SecondComponent } from './pages/second/second.component';
-import { ThirdComponent } from './pages/third/third.component';
+import { UsersComponent } from './pages/first/users.component';
 
 const routes: Routes = [
   {
-    path: '', component: FirstComponent
+    path: '', component: UsersComponent
   },
-  {
-    path: 'first', component: FirstComponent
-  },
-  {
-    path: 'second', component: SecondComponent
-  },
-  {
-    path: 'third', component: ThirdComponent
-  }
 ];
 
 @NgModule({

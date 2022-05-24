@@ -1,0 +1,10 @@
+<div class="users-container">
+  <div>
+    <button mat-raised-button color="warn" (click)="deactivateUsers(users)">Deactivate Users</button>
+  </div>
+  <div class="users">
+    <ng-container *ngFor="let user of users">
+      <app-user [user]="user" (logEvent)="logChildOutputEvent($event)"></app-user>
+    </ng-container>
+  </div>
+</div>

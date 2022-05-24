@@ -1,0 +1,16 @@
+<mat-card class="card" [hidden]="true">
+  <div>{{ user.name }}</div>
+  <div>Age {{ user.age }}</div>
+  <div>{{ user.activated ? "Active" : "Non-Active" }}</div>
+  <button
+    mat-button
+    color="primary"
+    (click)="this.deactivateUser(user)"
+    [disabled]="!user.activated"
+  >
+    Deactivate
+  </button>
+  <button mat-button color="primary" (click)="this.emitLoggerEvent(user.name)">
+    Click me
+  </button>
+</mat-card>

@@ -6,19 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ThirdComponent } from './pages/third/third.component';
-
-import { FirstModule } from './pages/first/first.module';
-import { SecondModule } from './pages/second/second.module';
+import { UsersModule } from './pages/first/users.module';
+import { UserModule } from './shared-modules/user/user.module';
 
 @NgModule({
-  declarations: [AppComponent, ThirdComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FirstModule,
-    SecondModule,
+    UsersModule,
+    UserModule,
     FormsModule
   ],
   providers: [],
