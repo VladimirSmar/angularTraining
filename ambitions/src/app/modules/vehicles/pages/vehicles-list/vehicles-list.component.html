@@ -1,0 +1,13 @@
+<div class="vehicles">
+  <ng-container *ngFor="let vehicle of vehicles">
+    <app-card [entity]="vehicle" (addToFavoriteEvent)="addToFavorite($event)">
+      <div class="title">{{ vehicle.name }}</div>
+      <div class="subtitle">{{ vehicle.number }}</div>
+      <img class="cardImage" src="{{ vehicle.imageUrl }}" alt="Card Image" />
+      <div class="cardContent">
+        <div>Produced in {{ vehicle.releaseYear }}</div>
+        <div>Color: {{ vehicle.color }}</div>
+      </div>
+    </app-card>
+  </ng-container>
+</div>

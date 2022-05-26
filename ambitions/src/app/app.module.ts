@@ -6,10 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { UsersModule } from './pages/users/users.module';
-import { UserModule } from './shared-modules/user/user.module';
-import { VehicleModule } from './shared-modules/vehicle/vehicle.module';
-import { VehiclesModule } from './pages/vehicles/vehicles.module';
+import { UsersModule } from './modules/users/users.module';
+import { VehiclesModule } from './modules/vehicles/vehicles.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,9 +16,7 @@ import { VehiclesModule } from './pages/vehicles/vehicles.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     UsersModule,
-    UserModule,
     VehiclesModule,
-    VehicleModule,
     FormsModule,
   ],
   providers: [],
