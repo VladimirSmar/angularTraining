@@ -9,7 +9,7 @@ import { Favorite } from '../../interfaces/favorite';
 })
 export class FavoritesComponent implements OnInit {
   @Input() favorites!: Array<Favorite>;
-  favoriteType: FAVORITE = FAVORITE.User;
+  @Input() favoriteType!: FAVORITE;
 
   constructor() {}
 

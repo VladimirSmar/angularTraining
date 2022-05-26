@@ -8,18 +8,25 @@ import { IVehicle } from 'src/app/modules/vehicles/interfaces/vehicle';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  @Input()
-  entity!: IUser | IVehicle;
+  @Input() entity!: IUser | IVehicle;
+  @Input() isFavored!: boolean;
+
   @Output() addToFavoriteEvent: EventEmitter<IUser | IVehicle> =
     new EventEmitter<IUser | IVehicle>();
-  isFavored: boolean = false;
+  @Output() removeFromFavoriteEvent: EventEmitter<IUser | IVehicle> =
+    new EventEmitter<IUser | IVehicle>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
   addToFavorite(): void {
-    this.addToFavoriteEvent.emit(this.entity);
-    this.isFavored = !this.isFavored;
+    if (this.isFavored) {
+      this.isFavored = !this.isFavored;
+      this.removeFromFavoriteEvent.emit(this.entity);
+    } else {
+      this.isFavored = !this.isFavored;
+      this.addToFavoriteEvent.emit(this.entity);
+    }
   }
 }

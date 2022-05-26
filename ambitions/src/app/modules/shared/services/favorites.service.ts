@@ -22,10 +22,18 @@ export class FavoritesService {
     });
   }
 
-  deleteFromFavorite(id: number): void {
+  removeFromFavorite(entityId: number, entityType: FAVORITE): void {
     let favoriteId = this.favorites.findIndex((favorite) => {
-      favorite.id == id;
+      return favorite.id == entityId && favorite.type == entityType;
     });
     this.favorites.splice(favoriteId, 1);
+  }
+
+  checkIfFavored(entityId: number, entityType: FAVORITE): boolean {
+    return this.favorites.find((favorite) => {
+      return favorite.type == entityType && favorite.id == entityId;
+    })
+      ? true
+      : false;
   }
 }

@@ -1,6 +1,12 @@
 <div class="vehicles-list-shell">
   <div class="vehicles-container">
-    <app-vehicles-list [vehicles]="this.vehicles"></app-vehicles-list>
+    <app-vehicles-list
+      [vehicles]="this.vehicles"
+      [favorites]="this.favorites"
+    ></app-vehicles-list>
   </div>
-  <app-favorites [favorites]="this.favorites"></app-favorites>
+  <app-favorites
+    [favorites]="this.favorites"
+    [favoriteType]="this.favoriteType"
+  ></app-favorites>
 </div>

@@ -15,7 +15,7 @@ export class VehiclesService {
       imageUrl: `/assets/images/firstcar.jpg`,
     },
     {
-      id: 1,
+      id: 2,
       name: `Tayata`,
       color: `brown`,
       releaseYear: 2003,
@@ -23,7 +23,7 @@ export class VehiclesService {
       imageUrl: `/assets/images/secondcar.jpg`,
     },
     {
-      id: 1,
+      id: 3,
       name: `mosckvich`,
       color: `black`,
       releaseYear: 1107,

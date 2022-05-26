@@ -1,6 +1,11 @@
 <div class="vehicles">
   <ng-container *ngFor="let vehicle of vehicles">
-    <app-card [entity]="vehicle" (addToFavoriteEvent)="addToFavorite($event)">
+    <app-card
+      [entity]="vehicle"
+      [isFavored]="checkIfFavored(vehicle.id)"
+      (addToFavoriteEvent)="addToFavorite($event)"
+      (removeFromFavoriteEvent)="removeFromFavorite($event)"
+    >
       <div class="title">{{ vehicle.name }}</div>
       <div class="subtitle">{{ vehicle.number }}</div>
       <img class="cardImage" src="{{ vehicle.imageUrl }}" alt="Card Image" />

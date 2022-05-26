@@ -1,6 +1,12 @@
 <div class="users-list-shell">
   <div class="users-container">
-    <app-users-list [users]="this.users"></app-users-list>
+    <app-users-list
+      [users]="this.users"
+      [favorites]="this.favorites"
+    ></app-users-list>
   </div>
-  <app-favorites [favorites]="this.favorites"></app-favorites>
+  <app-favorites
+    [favorites]="this.favorites"
+    [favoriteType]="this.favoriteType"
+  ></app-favorites>
 </div>

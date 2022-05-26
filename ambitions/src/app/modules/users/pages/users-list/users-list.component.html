@@ -1,11 +1,16 @@
 <div class="users">
   <ng-container *ngFor="let user of users">
-    <app-card [entity]="user" (addToFavoriteEvent)="addToFavorite($event)">
+    <app-card
+      [entity]="user"
+      [isFavored]="checkIfFavored(user.id)"
+      (addToFavoriteEvent)="addToFavorite($event)"
+      (removeFromFavoriteEvent)="removeFromFavorite($event)"
+    >
       <div class="title">{{ user.name }}</div>
       <div class="subtitle">{{ user.age }} years old</div>
       <img class="cardImage" src="{{ user.imageUrl }}" alt="Card Image" />
       <div class="cardContent">
-        <div>Gender: {{user.gender}}</div>
+        <div>Gender: {{ user.gender }}</div>
         <div>Company: {{ user.company }}</div>
         <div>Department: {{ user.department }}</div>
       </div>

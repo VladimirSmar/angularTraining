@@ -6,6 +6,7 @@ import { UsersService } from '../../services/users.service';
 
 import { FavoritesService } from 'src/app/modules/shared/services/favorites.service';
 import { Favorite } from 'src/app/modules/shared/interfaces/favorite';
+import { FAVORITE } from 'src/app/modules/shared/enums/favoriteCards';
 
 @Component({
   selector: 'app-users-list-shell',
@@ -15,6 +16,7 @@ import { Favorite } from 'src/app/modules/shared/interfaces/favorite';
 export class UsersListShellComponent implements OnInit {
   users: IUser[] = [];
   favorites!: Array<Favorite>;
+  favoriteType: FAVORITE = FAVORITE.User;
 
   constructor(
     private usersService: UsersService,

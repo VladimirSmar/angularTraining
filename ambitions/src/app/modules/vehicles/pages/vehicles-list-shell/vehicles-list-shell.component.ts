@@ -3,6 +3,7 @@ import { IVehicle } from 'src/app/modules/vehicles/interfaces/vehicle';
 import { VehiclesService } from '../../services/vehicles.service';
 import { FavoritesService } from 'src/app/modules/shared/services/favorites.service';
 import { Favorite } from 'src/app/modules/shared/interfaces/favorite';
+import { FAVORITE } from 'src/app/modules/shared/enums/favoriteCards';
 
 @Component({
   selector: 'app-vehicles-list-shell',
@@ -10,8 +11,9 @@ import { Favorite } from 'src/app/modules/shared/interfaces/favorite';
   styleUrls: ['./vehicles-list-shell.component.scss'],
 })
 export class VehiclesListShellComponent implements OnInit {
-  vehicles!: IVehicle[];
+  vehicles: IVehicle[] = [];
   favorites!: Array<Favorite>;
+  favoriteType: FAVORITE = FAVORITE.Vehicle;
 
   constructor(
     private vehiclesService: VehiclesService,
