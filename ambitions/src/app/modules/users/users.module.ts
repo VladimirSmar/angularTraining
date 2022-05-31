@@ -1,25 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-import { UsersComponent } from './components/users.component';
-import { UsersListComponent } from './pages/users-list/users-list.component';
-import { UsersListShellComponent } from './pages/users-list-shell/users-list-shell.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CardModule } from '../shared/components/card/card.module';
-
-import { MatButtonModule } from '@angular/material/button';
 import { FavoritesModule } from '../shared/components/favorites/favorites.module';
 
+import { UsersListComponent } from './components/users-list/users-list.component';
+import { UsersListShellComponent } from './pages/users-list-shell/users-list-shell.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
+import { AddUserShellComponent } from './pages/add-user-shell/add-user-shell.component';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
-  declarations: [UsersComponent, UsersListComponent, UsersListShellComponent],
+  declarations: [
+    UsersListComponent,
+    UsersListShellComponent,
+    AddUserComponent,
+    AddUserShellComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
     MatButtonModule,
     CardModule,
     FavoritesModule,
+    MatIconModule,
+    ReactiveFormsModule
   ],
-  exports: [UsersComponent],
+  exports: [UsersListShellComponent],
 })
 export class UsersModule {}

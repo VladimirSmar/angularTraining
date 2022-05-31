@@ -2,11 +2,8 @@
   <div class="users-container">
     <app-users-list
       [users]="this.users"
-      [favorites]="this.favorites"
+      (toggleIsFavoriteEvent)="toggleIsFavorite($event)"
     ></app-users-list>
   </div>
-  <app-favorites
-    [favorites]="this.favorites"
-    [favoriteType]="this.favoriteType"
-  ></app-favorites>
+  <app-favorites [favorites]="this.favorites"></app-favorites>
 </div>

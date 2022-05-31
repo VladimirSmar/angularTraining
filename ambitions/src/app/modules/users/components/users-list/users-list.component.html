@@ -1,0 +1,24 @@
+<div class="users">
+  <ng-container *ngFor="let user of users">
+    <app-card>
+      <div class="title">{{ user.firstName }} {{ user.lastName }}, {{user.age}}</div>
+      <div class="subtitle">{{ user.email }}</div>
+      <img class="cardImage" src="{{ user.imageUrl }}" alt="Card Image" />
+      <div class="cardContent">
+        <div>Gender: {{ user.gender }}</div>
+        <div>Company: {{ user.company }}</div>
+        <div>Department: {{ user.department }}</div>
+      </div>
+      <button
+        class="cardLikeButton"
+        id="toggleIsFavoriteButton"
+        mat-icon-button
+        [color]="checkIfFavored(user.id) ? 'warn' : ''"
+        aria-label="Add to favorites"
+        (click)="toggleIsFavorite(user)"
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
+    </app-card>
+  </ng-container>
+</div>

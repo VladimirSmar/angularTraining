@@ -1,11 +1,6 @@
 <div class="vehicles">
   <ng-container *ngFor="let vehicle of vehicles">
-    <app-card
-      [entity]="vehicle"
-      [isFavored]="checkIfFavored(vehicle.id)"
-      (addToFavoriteEvent)="addToFavorite($event)"
-      (removeFromFavoriteEvent)="removeFromFavorite($event)"
-    >
+    <app-card>
       <div class="title">{{ vehicle.name }}</div>
       <div class="subtitle">{{ vehicle.number }}</div>
       <img class="cardImage" src="{{ vehicle.imageUrl }}" alt="Card Image" />
@@ -13,6 +8,16 @@
         <div>Produced in {{ vehicle.releaseYear }}</div>
         <div>Color: {{ vehicle.color }}</div>
       </div>
+      <button
+        class="cardLikeButton"
+        id="toggleIsFavoriteButton"
+        mat-icon-button
+        [color]="checkIfFavored(vehicle.id) ? 'warn' : ''"
+        aria-label="Add to favorites"
+        (click)="toggleIsFavorite(vehicle)"
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
     </app-card>
   </ng-container>
 </div>

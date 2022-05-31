@@ -1,10 +1,8 @@
 <div class="favorites">
   <div class="favorites-title">Favorites</div>
   <ng-container *ngFor="let favorite of favorites">
-    <ng-container *ngIf="favorite.type == this.favoriteType">
-      <div class="favorite">
-        {{ favorite.name }}
-      </div>
-    </ng-container>
+    <div class="favorite">
+      {{ favorite }}
+    </div>
   </ng-container>
 </div>

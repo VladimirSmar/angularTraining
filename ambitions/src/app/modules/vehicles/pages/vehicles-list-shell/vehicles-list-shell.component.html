@@ -2,11 +2,8 @@
   <div class="vehicles-container">
     <app-vehicles-list
       [vehicles]="this.vehicles"
-      [favorites]="this.favorites"
+      (toggleIsFavoriteEvent)="toggleIsFavorite($event)"
     ></app-vehicles-list>
   </div>
-  <app-favorites
-    [favorites]="this.favorites"
-    [favoriteType]="this.favoriteType"
-  ></app-favorites>
+  <app-favorites [favorites]="this.favorites"></app-favorites>
 </div>

@@ -1,0 +1,150 @@
+<form
+  id="add-user-form"
+  class="add-user-form"
+  [formGroup]="addUserGroup"
+  (ngSubmit)="addNewUser()"
+  novalidate
+>
+  <div class="add-user_form-control-wrapper">
+    <span>First Name:</span>
+    <input
+      class="add-user_form-control"
+      type="text"
+      id="first-name-input"
+      placeholder="First Name"
+      formControlName="firstName"
+      autocomplete="given-name"
+    />
+    <span
+      *ngIf="
+        addUserGroup.get('firstName')!.invalid &&
+        addUserGroup.get('firstName')!.touched
+      "
+      class="form-error"
+    >
+      Please enter the correct first name, this name not valid.
+    </span>
+  </div>
+  <div class="add-user_form-control-wrapper">
+    <span>Last Name:</span>
+    <input
+      class="add-user_form-control"
+      type="text"
+      id="last-name-input"
+      placeholder="Last Name"
+      formControlName="lastName"
+      autocomplete="family-name"
+    />
+    <span
+      *ngIf="
+        addUserGroup.get('lastName')!.invalid &&
+        addUserGroup.get('lastName')!.touched
+      "
+      class="form-error"
+    >
+      Please enter the correct last name, this name not valid.
+    </span>
+  </div>
+  <div class="add-user_form-control-wrapper">
+    <span>Email:</span>
+    <input
+      class="add-user_form-control"
+      type="email"
+      id="email-input"
+      placeholder="Email"
+      formControlName="email"
+      autocomplete="email"
+    />
+    <span
+      *ngIf="
+        addUserGroup.get('email')!.invalid && addUserGroup.get('email')!.touched
+      "
+      class="form-error"
+    >
+      Please enter the correct email, this email not valid.
+    </span>
+  </div>
+  <div class="add-user_form-control-wrapper">
+    <span>Age:</span>
+    <input
+      class="add-user_form-control"
+      type="text"
+      id="age-input"
+      placeholder="Age"
+      formControlName="age"
+      autocomplete="age"
+    />
+    <span
+      *ngIf="
+        addUserGroup.get('age')!.invalid && addUserGroup.get('age')!.touched
+      "
+      class="form-error"
+    >
+      Please enter the correct age, this age not valid.
+    </span>
+  </div>
+  <div class="add-user_form-control-wrapper">
+    <span>Department:</span>
+    <input
+      class="add-user_form-control"
+      type="text"
+      id="department-input"
+      placeholder="Department"
+      formControlName="department"
+      autocomplete="Department"
+    />
+    <span
+      *ngIf="
+        addUserGroup.get('department')!.invalid &&
+        addUserGroup.get('department')!.touched
+      "
+      class="form-error"
+    >
+      Please enter the correct department name, this name not valid.
+    </span>
+  </div>
+  <div class="add-user_form-control-wrapper">
+    <span>Company:</span>
+    <input
+      class="add-user_form-control"
+      type="text"
+      id="company-input"
+      placeholder="Company"
+      formControlName="company"
+      autocomplete="Company"
+    />
+    <span
+      *ngIf="
+        addUserGroup.get('company')!.invalid &&
+        addUserGroup.get('company')!.touched
+      "
+      class="form-error"
+    >
+      Please enter the correct company name, this name not valid.
+    </span>
+  </div>
+  <div class="add-user_form-control-wrapper">
+    <label>
+      <input type="radio" formControlName="gender" name="gender" value="male" />
+      Male</label
+    >
+    <label>
+      <input
+        type="radio"
+        formControlName="gender"
+        name="gender"
+        value="female"
+      />
+      Female</label
+    >
+    <div
+      *ngIf="
+        addUserGroup.get('gender')!.invalid &&
+        addUserGroup.get('gender')!.touched
+      "
+      class="form-error"
+    >
+      Please choose your gender.
+    </div>
+  </div>
+</form>

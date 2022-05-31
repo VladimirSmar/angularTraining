@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UsersComponent } from './users.component';
+import { AddUserShellComponent } from './add-user-shell.component';
 
-describe('FirstComponent', () => {
-  let component: UsersComponent;
-  let fixture: ComponentFixture<UsersComponent>;
+describe('AddUserShellComponent', () => {
+  let component: AddUserShellComponent;
+  let fixture: ComponentFixture<AddUserShellComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UsersComponent ]
+      declarations: [ AddUserShellComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsersComponent);
+    fixture = TestBed.createComponent(AddUserShellComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -8,17 +8,20 @@ export class UsersService {
   private users: IUser[] = [
     {
       id: 1,
-      name: 'Michael',
+      firstName: 'Michael',
+      lastName: 'Reeves',
+      email: 'Test@gmail.com',
       age: 23,
       gender: `male`,
       department: 'software',
       company: `Kukaracha`,
       imageUrl: `/assets/images/firstuser.jpg`,
-
     },
     {
       id: 2,
-      name: 'Pikachu',
+      firstName: 'Pikachu',
+      lastName: 'Chu',
+      email: 'Test1@gmail.com',
       age: 5,
       gender: `female`,
       department: 'monsters',
@@ -27,7 +30,9 @@ export class UsersService {
     },
     {
       id: 3,
-      name: 'Agent 007',
+      firstName: 'Agent 007',
+      lastName: 'Actually 008',
+      email: 'Test3@gmail.com',
       age: 43,
       gender: `male`,
       department: 'assassins',
@@ -40,5 +45,28 @@ export class UsersService {
 
   getUsersData(): IUser[] {
     return this.users;
+  }
+
+  addNewUser({
+    firstName = 'Default',
+    lastName = 'Name',
+    email = 'Preset@gmail.com',
+    age = 20,
+    gender = 'male',
+    department = 'testing',
+    company = 'Default Incorporated',
+  }): void {
+    let newUser: IUser = {
+      id: this.users.length + 1,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      age: age,
+      gender: gender,
+      department: department,
+      company: company,
+      imageUrl: `/assets/images/defaultProfile.jpg`,
+    };
+    this.users.push(newUser);
   }
 }

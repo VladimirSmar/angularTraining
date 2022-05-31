@@ -1,8 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FAVORITE } from 'src/app/modules/shared/enums/favoriteCards';
-import { Favorite } from 'src/app/modules/shared/interfaces/favorite';
 import { FavoritesService } from 'src/app/modules/shared/services/favorites.service';
-import { IUser } from 'src/app/modules/users/interfaces/user';
 import { IVehicle } from '../../interfaces/vehicle';
 
 @Component({
@@ -12,22 +10,15 @@ import { IVehicle } from '../../interfaces/vehicle';
 })
 export class VehiclesListComponent implements OnInit {
   @Input() vehicles!: IVehicle[];
-  @Input() favorites!: Favorite[];
+
+  @Output() toggleIsFavoriteEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private favoritesService: FavoritesService) {}
 
   ngOnInit(): void {}
 
-  addToFavorite(vehicle: IUser | IVehicle): void {
-    this.favoritesService.addToFavorite(
-      vehicle.id,
-      FAVORITE.Vehicle,
-      vehicle.name
-    );
-  }
-
-  removeFromFavorite(vehicle: IUser | IVehicle): void {
-    this.favoritesService.removeFromFavorite(vehicle.id, FAVORITE.Vehicle);
+  toggleIsFavorite(vehicle: IVehicle): void {
+    this.toggleIsFavoriteEvent.emit(vehicle);
   }
 
   checkIfFavored(vehicleId: number): boolean {

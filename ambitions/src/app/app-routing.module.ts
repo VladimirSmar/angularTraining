@@ -2,22 +2,27 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { UsersComponent } from './modules/users/components/users.component';
-import { VehiclesComponent } from './modules/vehicles/components/vehicles.component';
+import { AddUserShellComponent } from './modules/users/pages/add-user-shell/add-user-shell.component';
+import { UsersListShellComponent } from './modules/users/pages/users-list-shell/users-list-shell.component';
+import { VehiclesListShellComponent } from './modules/vehicles/pages/vehicles-list-shell/vehicles-list-shell.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: UsersComponent,
+    component: UsersListShellComponent,
   },
   {
     path: 'users',
-    component: UsersComponent,
+    component: UsersListShellComponent,
   },
   {
     path: 'vehicles',
-    component: VehiclesComponent,
+    component: VehiclesListShellComponent,
   },
+  {
+    path: 'addNewUser',
+    component: AddUserShellComponent
+  }
 ];
 
 @NgModule({
