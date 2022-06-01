@@ -27,9 +27,7 @@ export class FavoritesService {
   }
 
   checkIfFavored(id: number, type: FAVORITE): boolean {
-    return favoriteMap[type].find((favorite) => {
-      return (favorite = id);
-    })
+    return favoriteMap[type].includes(id)
       ? true
       : false;
   }

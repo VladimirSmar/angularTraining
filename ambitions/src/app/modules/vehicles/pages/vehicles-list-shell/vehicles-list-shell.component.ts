@@ -20,8 +20,13 @@ export class VehiclesListShellComponent implements OnInit {
     private favoritesService: FavoritesService
   ) {}
 
-  get favorites(): Array<number> {
-    return this.favoritesService.getFavoritesData(FAVORITE.Vehicle);
+  get favorites(): Array<IVehicle> {
+    let favoritesId: number[] = this.favoritesService.getFavoritesData(
+      FAVORITE.Vehicle
+    );
+    return this.vehicles.filter((vehicle) => {
+      return favoritesId.includes(vehicle.id);
+    });
   }
 
   ngOnInit(): void {

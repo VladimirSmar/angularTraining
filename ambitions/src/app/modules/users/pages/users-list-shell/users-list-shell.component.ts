@@ -20,8 +20,13 @@ export class UsersListShellComponent implements OnInit {
     private favoritesService: FavoritesService
   ) {}
 
-  get favorites(): Array<number> {
-    return this.favoritesService.getFavoritesData(FAVORITE.User);
+  get favorites(): Array<IUser> {
+    let favoritesId: number[] = this.favoritesService.getFavoritesData(
+      FAVORITE.User
+    );
+    return this.users.filter((user) => {
+      return favoritesId.includes(user.id);
+    });
   }
 
   ngOnInit(): void {

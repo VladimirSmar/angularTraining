@@ -1,7 +1,9 @@
 <div class="users">
   <ng-container *ngFor="let user of users">
     <app-card>
-      <div class="title">{{ user.firstName }} {{ user.lastName }}, {{user.age}}</div>
+      <div class="title">
+        {{ user.firstName }} {{ user.lastName }}, {{ user.age }}
+      </div>
       <div class="subtitle">{{ user.email }}</div>
       <img class="cardImage" src="{{ user.imageUrl }}" alt="Card Image" />
       <div class="cardContent">

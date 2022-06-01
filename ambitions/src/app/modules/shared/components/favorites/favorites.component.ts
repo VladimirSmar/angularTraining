@@ -5,7 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent implements OnInit {
-  @Input() favorites!: Array<number>;
+  @Input() favorites!: Array<any>;
 
   constructor() {}
 
