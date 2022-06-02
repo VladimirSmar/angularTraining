@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/modules/users/services/users.service';
 
@@ -10,10 +11,17 @@ import { UsersService } from 'src/app/modules/users/services/users.service';
 export class AddUserShellComponent implements OnInit {
   constructor(private usersService: UsersService, private router: Router) {}
 
+  addUserGroup: FormGroup = new FormGroup({});
+  isFormInvalid: boolean = false;
+
   ngOnInit(): void {}
 
-  addNewUser(newUserValues: Object): void {
-    this.usersService.addNewUser(newUserValues);
-    this.router.navigateByUrl('/users');
+  addNewUser(): void {
+    if (this.addUserGroup.valid) {
+      this.usersService.addNewUser(this.addUserGroup.value.user);
+      this.router.navigateByUrl('/users');
+    } else {
+      this.isFormInvalid = true;
+    }
   }
 }

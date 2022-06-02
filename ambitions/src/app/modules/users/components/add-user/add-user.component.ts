@@ -1,11 +1,6 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-add-user',
@@ -13,22 +8,37 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-user.component.scss'],
 })
 export class AddUserComponent implements OnInit {
-  addUserGroup!: FormGroup;
+  @Input() addUserGroup: FormGroup = new FormGroup({});
+  @Input() isFormInvalid!: boolean;
 
-  @Output() addUserGroupSubmit: EventEmitter<FormGroup> =
-    new EventEmitter<FormGroup>();
+  addUserForm!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder, private el: ElementRef) {
+  constructor(
+    private _formBuilder: FormBuilder,
+    private usersService: UsersService
+  ) {}
+
+  ngOnInit(): void {
     this.createAddUserForm();
+    this.addUserGroup.addControl('user', this.addUserForm);
   }
 
-  ngOnInit(): void {}
-
   createAddUserForm(): void {
-    this.addUserGroup = this._formBuilder.group({
+    this.addUserForm = this._formBuilder.group({
       firstName: [null, [Validators.required]],
       lastName: [null, [Validators.required]],
-      email: [null, [Validators.required, Validators.email]],
+      email: [
+        null,
+        {
+          validators: [
+            Validators.required,
+            Validators.email,
+            Validators.pattern(/[a-zA-Z0-9]+@gmail\.com/),
+          ],
+          asyncValidators: this.usersService.emailValidator(),
+          updateOn: 'blur',
+        },
+      ],
       age: [
         null,
         [
@@ -42,15 +52,5 @@ export class AddUserComponent implements OnInit {
       company: [null, [Validators.required, Validators.minLength(6)]],
       gender: [null, [Validators.required]],
     });
-  }
-
-  addNewUser(): void {
-    if (this.addUserGroup.valid) {
-      this.addUserGroupSubmit.emit(this.addUserGroup.value);
-    } else {
-      const invalidElements =
-        this.el.nativeElement.querySelectorAll('.ng-invalid');
-      invalidElements[1].focus();
-    }
   }
 }

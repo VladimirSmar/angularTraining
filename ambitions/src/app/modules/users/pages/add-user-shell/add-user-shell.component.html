@@ -1,10 +1,19 @@
 <div class="add-user-container">
   <div class="add-user">
     <div class="add-user_form-wrapper">
-      <app-add-user
-        (addUserGroupSubmit)="addNewUser($event)"
-      ></app-add-user>
-      <button class="add-user_submit-button" type="submit" form="add-user-form">Submit</button>
+      <form
+        id="add-user-form"
+        class="add-user-form"
+        [formGroup]="addUserGroup"
+        (submit)="addNewUser()"
+        novalidate
+      >
+        <app-add-user
+          [addUserGroup]="addUserGroup"
+          [isFormInvalid]="isFormInvalid"
+        ></app-add-user>
+        <button class="add-user_submit-button" type="submit">Submit</button>
+      </form>
     </div>
   </div>
 </div>

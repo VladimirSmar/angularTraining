@@ -1,10 +1,4 @@
-<form
-  id="add-user-form"
-  class="add-user-form"
-  [formGroup]="addUserGroup"
-  (ngSubmit)="addNewUser()"
-  novalidate
->
+<form [formGroup]="addUserForm">
   <div class="add-user_form-control-wrapper">
     <span>First Name:</span>
     <input
@@ -16,10 +10,7 @@
       autocomplete="given-name"
     />
     <span
-      *ngIf="
-        addUserGroup.get('firstName')!.invalid &&
-        addUserGroup.get('firstName')!.touched
-      "
+      *ngIf="addUserForm.get('firstName')!.invalid && isFormInvalid"
       class="form-error"
     >
       Please enter the correct first name, this name not valid.
@@ -36,10 +27,7 @@
       autocomplete="family-name"
     />
     <span
-      *ngIf="
-        addUserGroup.get('lastName')!.invalid &&
-        addUserGroup.get('lastName')!.touched
-      "
+      *ngIf="addUserForm.get('lastName')!.invalid && isFormInvalid"
       class="form-error"
     >
       Please enter the correct last name, this name not valid.
@@ -57,11 +45,23 @@
     />
     <span
       *ngIf="
-        addUserGroup.get('email')!.invalid && addUserGroup.get('email')!.touched
+        addUserForm.get('email')!.invalid &&
+        isFormInvalid &&
+        !addUserForm.get('email')!.hasError('emailExists')
       "
       class="form-error"
     >
       Please enter the correct email, this email not valid.
+    </span>
+    <span
+      *ngIf="
+        addUserForm.get('email')!.invalid &&
+        isFormInvalid &&
+        addUserForm.get('email')!.hasError('emailExists')
+      "
+      class="form-error"
+    >
+      Please enter the correct email, this one is already taken.
     </span>
   </div>
   <div class="add-user_form-control-wrapper">
@@ -75,9 +75,7 @@
       autocomplete="age"
     />
     <span
-      *ngIf="
-        addUserGroup.get('age')!.invalid && addUserGroup.get('age')!.touched
-      "
+      *ngIf="addUserForm.get('age')!.invalid && isFormInvalid"
       class="form-error"
     >
       Please enter the correct age, this age not valid.
@@ -94,10 +92,7 @@
       autocomplete="Department"
     />
     <span
-      *ngIf="
-        addUserGroup.get('department')!.invalid &&
-        addUserGroup.get('department')!.touched
-      "
+      *ngIf="addUserForm.get('department')!.invalid && isFormInvalid"
       class="form-error"
     >
       Please enter the correct department name, this name not valid.
@@ -114,10 +109,7 @@
       autocomplete="Company"
     />
     <span
-      *ngIf="
-        addUserGroup.get('company')!.invalid &&
-        addUserGroup.get('company')!.touched
-      "
+      *ngIf="addUserForm.get('company')!.invalid && isFormInvalid"
       class="form-error"
     >
       Please enter the correct company name, this name not valid.
@@ -138,10 +130,7 @@
       Female</label
     >
     <div
-      *ngIf="
-        addUserGroup.get('gender')!.invalid &&
-        addUserGroup.get('gender')!.touched
-      "
+      *ngIf="addUserForm.get('gender')!.invalid && isFormInvalid"
       class="form-error"
     >
       Please choose your gender.
