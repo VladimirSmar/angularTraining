@@ -10,6 +10,7 @@ import { UsersValidatorService } from '../../services/users-validator.service';
 export class AddUserComponent implements OnInit {
   @Input() addUserGroup: FormGroup = new FormGroup({});
   @Input() isFormInvalid!: boolean;
+  @Input() key!: string;
 
   addUserForm!: FormGroup;
 
@@ -20,7 +21,7 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.createAddUserForm();
-    this.addUserGroup.addControl('user', this.addUserForm);
+    this.addUserGroup.addControl(this.key, this.addUserForm);
   }
 
   createAddUserForm(): void {
