@@ -1,10 +1,4 @@
 import { Injectable } from '@angular/core';
-import {
-  AbstractControl,
-  AsyncValidatorFn,
-  ValidationErrors,
-} from '@angular/forms';
-import { delay, map, Observable, of } from 'rxjs';
 import { IUser } from 'src/app/modules/users/interfaces/user';
 
 @Injectable({
@@ -49,7 +43,7 @@ export class UsersService {
 
   constructor() {}
 
-  getUsersData(): IUser[] {
+  getUsers(): IUser[] {
     return this.users;
   }
 
@@ -74,23 +68,5 @@ export class UsersService {
       imageUrl: `/assets/images/defaultProfile.jpg`,
     };
     this.users.push(newUser);
-  }
-
-  checkIfEmailExists(email: string): Observable<boolean> {
-    return of(
-      this.users.some((user) => {
-        return user.email == email;
-      })
-    ).pipe(delay(1000));
-  }
-
-  emailValidator(): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.checkIfEmailExists(control.value).pipe(
-        map((result: boolean) => {
-          return result ? { emailExists: true } : null;
-        })
-      );
-    };
   }
 }

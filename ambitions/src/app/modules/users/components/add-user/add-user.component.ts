@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UsersService } from '../../services/users.service';
+import { UsersValidatorService } from '../../services/users-validator.service';
 
 @Component({
   selector: 'app-add-user',
@@ -15,7 +15,7 @@ export class AddUserComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private usersService: UsersService
+    private usersValidatorService: UsersValidatorService
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class AddUserComponent implements OnInit {
             Validators.email,
             Validators.pattern(/[a-zA-Z0-9]+@gmail\.com/),
           ],
-          asyncValidators: this.usersService.emailValidator(),
+          asyncValidators: this.usersValidatorService.emailValidator(),
           updateOn: 'blur',
         },
       ],

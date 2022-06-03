@@ -1,4 +1,4 @@
-<form [formGroup]="addUserForm">
+<div [formGroup]="addUserForm">
   <div class="add-user_form-control-wrapper">
     <span>First Name:</span>
     <input
@@ -10,10 +10,12 @@
       autocomplete="given-name"
     />
     <span
-      *ngIf="addUserForm.get('firstName')!.invalid && isFormInvalid"
+      *ngIf="
+        addUserForm.get('firstName')!.hasError('required') && isFormInvalid
+      "
       class="form-error"
     >
-      Please enter the correct first name, this name not valid.
+      First Name field is required.
     </span>
   </div>
   <div class="add-user_form-control-wrapper">
@@ -27,10 +29,10 @@
       autocomplete="family-name"
     />
     <span
-      *ngIf="addUserForm.get('lastName')!.invalid && isFormInvalid"
+      *ngIf="addUserForm.get('lastName')!.hasError('required') && isFormInvalid"
       class="form-error"
     >
-      Please enter the correct last name, this name not valid.
+      Last Name field is required.
     </span>
   </div>
   <div class="add-user_form-control-wrapper">
@@ -44,21 +46,19 @@
       autocomplete="email"
     />
     <span
-      *ngIf="
-        addUserForm.get('email')!.invalid &&
-        isFormInvalid &&
-        !addUserForm.get('email')!.hasError('emailExists')
-      "
+      *ngIf="addUserForm.get('email')!.hasError('required') && isFormInvalid"
       class="form-error"
     >
-      Please enter the correct email, this email not valid.
+      Email field is required.
     </span>
     <span
-      *ngIf="
-        addUserForm.get('email')!.invalid &&
-        isFormInvalid &&
-        addUserForm.get('email')!.hasError('emailExists')
-      "
+      *ngIf="addUserForm.get('email')!.hasError('pattern') && isFormInvalid"
+      class="form-error"
+    >
+      Email adress should end with @gmail.com.
+    </span>
+    <span
+      *ngIf="addUserForm.get('email')!.hasError('emailExists') && isFormInvalid"
       class="form-error"
     >
       Please enter the correct email, this one is already taken.
@@ -75,10 +75,28 @@
       autocomplete="age"
     />
     <span
-      *ngIf="addUserForm.get('age')!.invalid && isFormInvalid"
+      *ngIf="addUserForm.get('age')!.hasError('required') && isFormInvalid"
       class="form-error"
     >
-      Please enter the correct age, this age not valid.
+      Age field is required.
+    </span>
+    <span
+      *ngIf="addUserForm.get('age')!.hasError('min') && isFormInvalid"
+      class="form-error"
+    >
+      Age should be more or equal to 15.
+    </span>
+    <span
+      *ngIf="addUserForm.get('age')!.hasError('max') && isFormInvalid"
+      class="form-error"
+    >
+      Age should be less or equal to 100.
+    </span>
+    <span
+      *ngIf="addUserForm.get('age')!.hasError('pattern') && isFormInvalid"
+      class="form-error"
+    >
+      Please use numbers only.
     </span>
   </div>
   <div class="add-user_form-control-wrapper">
@@ -92,10 +110,16 @@
       autocomplete="Department"
     />
     <span
-      *ngIf="addUserForm.get('department')!.invalid && isFormInvalid"
+      *ngIf="addUserForm.get('department')!.hasError('required') && isFormInvalid"
       class="form-error"
     >
-      Please enter the correct department name, this name not valid.
+      Department field is required.
+    </span>
+    <span
+      *ngIf="addUserForm.get('department')!.hasError('maxlength') && isFormInvalid"
+      class="form-error"
+    >
+      Department name length should be less or equal to 50.
     </span>
   </div>
   <div class="add-user_form-control-wrapper">
@@ -109,10 +133,16 @@
       autocomplete="Company"
     />
     <span
-      *ngIf="addUserForm.get('company')!.invalid && isFormInvalid"
+      *ngIf="addUserForm.get('company')!.hasError('required') && isFormInvalid"
       class="form-error"
     >
-      Please enter the correct company name, this name not valid.
+      Company field is required.
+    </span>
+    <span
+      *ngIf="addUserForm.get('company')!.hasError('minlength') && isFormInvalid"
+      class="form-error"
+    >
+      Company name should be longer or equal to 5.
     </span>
   </div>
   <div class="add-user_form-control-wrapper">
@@ -130,10 +160,10 @@
       Female</label
     >
     <div
-      *ngIf="addUserForm.get('gender')!.invalid && isFormInvalid"
+      *ngIf="addUserForm.get('gender')!.hasError('required') && isFormInvalid"
       class="form-error"
     >
       Please choose your gender.
     </div>
   </div>
-</form>
+</div>

@@ -30,7 +30,7 @@ export class UsersListShellComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.users = this.usersService.getUsersData();
+    this.users = this.usersService.getUsers();
   }
 
   toggleIsFavorite(user: IUser): void {
