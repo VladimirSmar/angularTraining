@@ -26,10 +26,10 @@ export class AddUserComponent implements OnInit {
 
   createAddUserForm(): void {
     this.addUserForm = this._formBuilder.group({
-      firstName: [null, [Validators.required]],
-      lastName: [null, [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       email: [
-        null,
+        '',
         {
           validators: [
             Validators.required,
@@ -41,7 +41,7 @@ export class AddUserComponent implements OnInit {
         },
       ],
       age: [
-        null,
+        '',
         [
           Validators.required,
           Validators.min(15),
@@ -49,9 +49,9 @@ export class AddUserComponent implements OnInit {
           Validators.pattern(/^-?(0|[1-9]\d*)?$/),
         ],
       ],
-      department: [null, [Validators.required, Validators.maxLength(50)]],
-      company: [null, [Validators.required, Validators.minLength(6)]],
-      gender: [null, [Validators.required]],
+      department: ['', [Validators.required, Validators.maxLength(50)]],
+      company: ['', [Validators.required, Validators.minLength(6)]],
+      gender: ['', [Validators.required]],
     });
   }
 }

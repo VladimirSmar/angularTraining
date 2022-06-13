@@ -1,0 +1,20 @@
+.addresses-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+  align-items: center;
+}
+
+.address-line {
+  display: inline-block;
+}
+
+.delete-address-button {
+  display: inline-block;
+}
+
+.add-address-button {
+  display: block;
+  margin: 0 auto;
+}

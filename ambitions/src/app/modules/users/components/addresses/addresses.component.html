@@ -1,0 +1,28 @@
+<div class="addresses-container">
+  <div>Address:</div>
+  <ng-container
+    *ngFor="let addressForm of addressesFormsArray.controls; let i = index"
+  >
+    <div>
+      <app-address class="address-line" [addressForm]="addressForm"></app-address>
+      <ng-container *ngIf="addressesFormsArray.controls.length > 1">
+        <mat-icon
+          class="delete-address-button"
+          color="primary"
+          (click)="deleteAddress(i)"
+        >
+          delete
+        </mat-icon>
+      </ng-container>
+    </div>
+  </ng-container>
+  <button
+    mat-mini-fab
+    class="add-address-button"
+    color="primary"
+    type="button"
+    (click)="addNewAddress()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

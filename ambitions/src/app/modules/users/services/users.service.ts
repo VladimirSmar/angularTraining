@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IUser } from 'src/app/modules/users/interfaces/user';
+import { IAddress } from '../interfaces/address';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,7 @@ export class UsersService {
       department: 'software',
       company: `Kukaracha`,
       imageUrl: `/assets/images/firstuser.jpg`,
+      address: [],
     },
     {
       id: 2,
@@ -27,6 +29,7 @@ export class UsersService {
       department: 'monsters',
       company: `Pokemon`,
       imageUrl: `/assets/images/seconduser.jpg`,
+      address: [],
     },
     {
       id: 3,
@@ -38,6 +41,7 @@ export class UsersService {
       department: 'assassins',
       company: `Undifined`,
       imageUrl: `/assets/images/thirduser.jpg`,
+      address: [],
     },
   ];
 
@@ -47,25 +51,18 @@ export class UsersService {
     return this.users;
   }
 
-  addNewUser({
-    firstName = 'Default',
-    lastName = 'Name',
-    email = 'Preset@gmail.com',
-    age = 20,
-    gender = 'male',
-    department = 'testing',
-    company = 'Default Incorporated',
-  }): void {
+  addNewUser(user: IUser, addresses: Array<IAddress>): void {
     let newUser: IUser = {
       id: this.users.length + 1,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      age: age,
-      gender: gender,
-      department: department,
-      company: company,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      age: user.age,
+      gender: user.gender,
+      department: user.department,
+      company: user.company,
       imageUrl: `/assets/images/defaultProfile.jpg`,
+      address: addresses
     };
     this.users.push(newUser);
   }

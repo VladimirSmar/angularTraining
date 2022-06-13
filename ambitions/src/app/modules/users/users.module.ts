@@ -12,6 +12,11 @@ import { AddUserShellComponent } from './pages/add-user-shell/add-user-shell.com
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { AddressComponent } from './components/address/address.component';
+import { AddressesComponent } from './components/addresses/addresses.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +24,8 @@ import { MatIconModule } from '@angular/material/icon';
     UsersListShellComponent,
     AddUserComponent,
     AddUserShellComponent,
+    AddressComponent,
+    AddressesComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +34,10 @@ import { MatIconModule } from '@angular/material/icon';
     CardModule,
     FavoritesModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule
   ],
   exports: [UsersListShellComponent],
 })

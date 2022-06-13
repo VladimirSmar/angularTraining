@@ -1,0 +1,20 @@
+.address-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 200px;
+}
+
+.address-line {
+  width: 220px;
+  margin-right: 5px;
+}
+
+.city {
+  width: 120px;
+  margin-right: 5px;
+}
+
+.zip {
+  width: 100px;
+  margin-right: 5px;
+}

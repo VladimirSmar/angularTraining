@@ -10,6 +10,23 @@
         <div>Gender: {{ user.gender }}</div>
         <div>Company: {{ user.company }}</div>
         <div>Department: {{ user.department }}</div>
+        <div>
+          Addresses:
+          <ng-container *ngFor="let address of user.address; index as i">
+            <div
+              class="addressLine"
+              *ngIf="address.city !== ''; else shortenedAddress"
+            >
+              {{ i + 1 }} - {{ address.city }}, {{ address.addressLine }},
+              {{ address?.zip }}
+            </div>
+            <ng-template #shortenedAddress>
+              <div class="addressLine">
+                {{ i + 1 }} - {{ address.addressLine }}
+              </div>
+            </ng-template>
+          </ng-container>
+        </div>
       </div>
       <button
         class="cardLikeButton"

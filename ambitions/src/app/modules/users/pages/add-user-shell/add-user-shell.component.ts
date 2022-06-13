@@ -17,8 +17,10 @@ export class AddUserShellComponent implements OnInit {
   ngOnInit(): void {}
 
   addNewUser(): void {
+    console.log(this.addUserGroup);
+    this.addUserGroup.markAllAsTouched();
     if (this.addUserGroup.valid) {
-      this.usersService.addNewUser(this.addUserGroup.value.user);
+      this.usersService.addNewUser(this.addUserGroup.value.user, this.addUserGroup.value.addresses);
       this.router.navigateByUrl('/users');
     } else {
       this.isFormInvalid = true;
