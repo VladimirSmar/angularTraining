@@ -3,7 +3,7 @@
   <ng-container
     *ngFor="let addressForm of addressesFormsArray.controls; let i = index"
   >
-    <div>
+    <div class="address-container">
       <app-address class="address-line" [addressForm]="addressForm"></app-address>
       <ng-container *ngIf="addressesFormsArray.controls.length > 1">
         <mat-icon

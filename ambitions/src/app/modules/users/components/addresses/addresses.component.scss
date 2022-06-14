@@ -6,6 +6,14 @@
   align-items: center;
 }
 
+.address-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+}
+
 .address-line {
   display: inline-block;
 }
