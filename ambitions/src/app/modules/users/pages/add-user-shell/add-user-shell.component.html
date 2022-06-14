@@ -4,16 +4,16 @@
       <form
         id="add-user-form"
         class="add-user-form"
-        [formGroup]="addUserGroup"
+        [formGroup]="userGroup"
         (submit)="addNewUser()"
         novalidate
       >
         <app-add-user
-          [addUserGroup]="addUserGroup"
+          [userGroup]="userGroup"
           [key]="'user'"
           [isFormInvalid]="isFormInvalid"
         ></app-add-user>
-        <app-addresses [addUserGroup]="addUserGroup" [key]="'addresses'" [isFormInvalid]="isFormInvalid"></app-addresses>
+        <app-addresses [userGroup]="userGroup" [key]="'addresses'" [isFormInvalid]="isFormInvalid"></app-addresses>
         <button class="add-user_submit-button" type="submit">Submit</button>
       </form>
     </div>

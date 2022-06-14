@@ -3,6 +3,9 @@
     <app-card>
       <div class="title">
         {{ user.firstName }} {{ user.lastName }}, {{ user.age }}
+        <button mat-icon-button color="primary" (click)="editUser(user.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
       </div>
       <div class="subtitle">{{ user.email }}</div>
       <img class="cardImage" src="{{ user.imageUrl }}" alt="Card Image" />
@@ -12,10 +15,10 @@
         <div>Department: {{ user.department }}</div>
         <div>
           Addresses:
-          <ng-container *ngFor="let address of user.address; index as i">
+          <ng-container *ngFor="let address of user.addresses; index as i">
             <div
               class="addressLine"
-              *ngIf="address.city !== ''; else shortenedAddress"
+              *ngIf="address.city; else shortenedAddress"
             >
               {{ i + 1 }} - {{ address.city }}, {{ address.addressLine }},
               {{ address?.zip }}

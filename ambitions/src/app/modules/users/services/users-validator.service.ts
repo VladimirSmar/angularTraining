@@ -11,7 +11,7 @@ export class UsersValidatorService {
   users!: IUser[];
 
   constructor(private usersService: UsersService) {
-    this.users = usersService.getUsers();
+    this.users = this.usersService.getUsers();
   }
 
   checkIfEmailExists(email: string): Observable<boolean> {

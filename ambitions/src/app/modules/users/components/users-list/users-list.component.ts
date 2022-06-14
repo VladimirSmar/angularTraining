@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FavoritesService } from 'src/app/modules/shared/services/favorites.service';
 import { FAVORITE } from 'src/app/modules/shared/enums/favoriteCards';
 import { IUser } from '../../interfaces/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-list',
@@ -13,7 +14,10 @@ export class UsersListComponent implements OnInit {
 
   @Output() toggleIsFavoriteEvent: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private favoritesService: FavoritesService) {}
+  constructor(
+    private favoritesService: FavoritesService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -23,5 +27,9 @@ export class UsersListComponent implements OnInit {
 
   checkIfFavored(userId: number): boolean {
     return this.favoritesService.checkIfFavored(userId, FAVORITE.User);
+  }
+
+  editUser(id: number): void {
+    this.router.navigateByUrl(`/users/edit/${id}`);
   }
 }

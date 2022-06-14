@@ -10,5 +10,5 @@ export interface IUser {
   department: string;
   company: string;
   imageUrl: string;
-  address: IAddress[];
+  addresses: IAddress[];
 }

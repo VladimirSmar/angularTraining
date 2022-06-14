@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AppComponent } from './app.component';
+import { LeaveEditUserGuard } from './modules/core/guards/leave-edit-user.guard';
 import { AddUserShellComponent } from './modules/users/pages/add-user-shell/add-user-shell.component';
+import { EditUserShellComponent } from './modules/users/pages/edit-user-shell/edit-user-shell.component';
 import { UsersListShellComponent } from './modules/users/pages/users-list-shell/users-list-shell.component';
 import { VehiclesListShellComponent } from './modules/vehicles/pages/vehicles-list-shell/vehicles-list-shell.component';
 
@@ -20,9 +21,14 @@ const routes: Routes = [
     component: VehiclesListShellComponent,
   },
   {
-    path: 'addNewUser',
-    component: AddUserShellComponent
-  }
+    path: 'users/add',
+    component: AddUserShellComponent,
+  },
+  {
+    path: 'users/edit/:id',
+    component: EditUserShellComponent,
+    canDeactivate: [LeaveEditUserGuard],
+  },
 ];
 
 @NgModule({

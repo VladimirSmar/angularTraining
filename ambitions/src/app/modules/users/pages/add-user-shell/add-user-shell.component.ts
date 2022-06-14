@@ -11,16 +11,15 @@ import { UsersService } from 'src/app/modules/users/services/users.service';
 export class AddUserShellComponent implements OnInit {
   constructor(private usersService: UsersService, private router: Router) {}
 
-  addUserGroup: FormGroup = new FormGroup({});
+  userGroup: FormGroup = new FormGroup({});
   isFormInvalid: boolean = false;
 
   ngOnInit(): void {}
 
   addNewUser(): void {
-    console.log(this.addUserGroup);
-    this.addUserGroup.markAllAsTouched();
-    if (this.addUserGroup.valid) {
-      this.usersService.addNewUser(this.addUserGroup.value.user, this.addUserGroup.value.addresses);
+    this.userGroup.markAllAsTouched();
+    if (this.userGroup.valid) {
+      this.usersService.addNewUser(this.userGroup.value.user, this.userGroup.value.addresses);
       this.router.navigateByUrl('/users');
     } else {
       this.isFormInvalid = true;

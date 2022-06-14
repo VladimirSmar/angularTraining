@@ -17,7 +17,13 @@ export class UsersService {
       department: 'software',
       company: `Kukaracha`,
       imageUrl: `/assets/images/firstuser.jpg`,
-      address: [],
+      addresses: [
+        {
+          addressLine: 'asdasdas',
+          city: 'asgasg',
+          zip: 123123,
+        },
+      ],
     },
     {
       id: 2,
@@ -29,7 +35,18 @@ export class UsersService {
       department: 'monsters',
       company: `Pokemon`,
       imageUrl: `/assets/images/seconduser.jpg`,
-      address: [],
+      addresses: [
+        {
+          addressLine: 'asdasdas',
+          city: 'asgasg',
+          zip: 123123,
+        },
+        {
+          addressLine: 'asdasdas',
+          city: 'asgasg',
+          zip: 123123,
+        },
+      ],
     },
     {
       id: 3,
@@ -41,7 +58,11 @@ export class UsersService {
       department: 'assassins',
       company: `Undifined`,
       imageUrl: `/assets/images/thirduser.jpg`,
-      address: [],
+      addresses: [
+        {
+          addressLine: 'asdasdas',
+        },
+      ],
     },
   ];
 
@@ -49,6 +70,10 @@ export class UsersService {
 
   getUsers(): IUser[] {
     return this.users;
+  }
+
+  getUserById(id: number): IUser {
+    return this.users.find((user) => user.id == id)!;
   }
 
   addNewUser(user: IUser, addresses: Array<IAddress>): void {
@@ -62,8 +87,27 @@ export class UsersService {
       department: user.department,
       company: user.company,
       imageUrl: `/assets/images/defaultProfile.jpg`,
-      address: addresses
+      addresses: addresses,
     };
     this.users.push(newUser);
+  }
+
+  editUser(user: IUser, addresses: Array<IAddress>): void {
+    let modifiedUser: IUser = {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      age: user.age,
+      gender: user.gender,
+      department: user.department,
+      company: user.company,
+      imageUrl: `/assets/images/defaultProfile.jpg`,
+      addresses: addresses,
+    };
+
+    this.users.map((user) =>
+      user.id == modifiedUser.id ? modifiedUser : user
+    );
   }
 }

@@ -1,0 +1,21 @@
+<form
+  id="edit-user-form"
+  class="edit-user-form"
+  [formGroup]="userGroup"
+  (submit)="submitChanges()"
+  novalidate
+>
+  <app-add-user
+    [userGroup]="userGroup"
+    [user]="user"
+    [key]="'user'"
+    [isFormInvalid]="isFormInvalid"
+  ></app-add-user>
+  <app-addresses
+    [userGroup]="userGroup"
+    [user]="user"
+    [key]="'addresses'"
+    [isFormInvalid]="isFormInvalid"
+  ></app-addresses>
+  <button class="edit-user_submit-button" type="submit">Save changes</button>
+</form>

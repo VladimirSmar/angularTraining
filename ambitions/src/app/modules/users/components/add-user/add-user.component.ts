@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { combineLatest, merge, Observable } from 'rxjs';
+import { IUser } from '../../interfaces/user';
 import { UsersValidatorService } from '../../services/users-validator.service';
 
 @Component({
@@ -8,11 +10,13 @@ import { UsersValidatorService } from '../../services/users-validator.service';
   styleUrls: ['./add-user.component.scss'],
 })
 export class AddUserComponent implements OnInit {
-  @Input() addUserGroup: FormGroup = new FormGroup({});
+  @Input() userGroup: FormGroup = new FormGroup({});
+  @Input() user?: IUser;
   @Input() isFormInvalid!: boolean;
   @Input() key!: string;
 
-  addUserForm!: FormGroup;
+  userForm!: FormGroup;
+  nameChange$: Observable<any>;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -21,11 +25,24 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.createAddUserForm();
-    this.addUserGroup.addControl(this.key, this.addUserForm);
+    this.userGroup.addControl(this.key, this.userForm);
+    this.userGroup.patchValue({ [this.key]: this.user });
+    combineLatest(
+      this.userGroup.get('user.firstName')!.valueChanges,
+      this.userGroup.get('user.lastName')!.valueChanges
+    ).subscribe(([firstName, lastName]) => {
+      this.createEmailValue(firstName, lastName);
+    });
+  }
+
+  createEmailValue(firstName: string, lastName: string) {
+    this.userGroup
+      .get(this.key)!
+      .patchValue({ ['email']: firstName + lastName + '@gmail.com' });
   }
 
   createAddUserForm(): void {
-    this.addUserForm = this._formBuilder.group({
+    this.userForm = this._formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: [

@@ -1,12 +1,10 @@
-<div [formGroup]="addUserForm">
+<div [formGroup]="userForm">
   <h4>Add user</h4>
   <mat-form-field appearance="fill">
     <mat-label>First Name</mat-label>
     <input matInput placeholder="Ivan" formControlName="firstName" />
     <mat-error
-      *ngIf="
-        addUserForm.get('firstName')!.hasError('required') && isFormInvalid
-      "
+      *ngIf="userForm.get('firstName')!.hasError('required') && isFormInvalid"
       >First name field is required</mat-error
     >
   </mat-form-field>
@@ -14,7 +12,7 @@
     <mat-label>Last Name</mat-label>
     <input matInput placeholder="Ivanovich" formControlName="lastName" />
     <mat-error
-      *ngIf="addUserForm.get('lastName')!.hasError('required') && isFormInvalid"
+      *ngIf="userForm.get('lastName')!.hasError('required') && isFormInvalid"
       >Last name field is required</mat-error
     >
   </mat-form-field>
@@ -22,16 +20,16 @@
     <mat-label>Email</mat-label>
     <input matInput placeholder="example@gmail.com" formControlName="email" />
     <mat-error
-      *ngIf="addUserForm.get('email')!.hasError('required') && isFormInvalid"
+      *ngIf="userForm.get('email')!.hasError('required') && isFormInvalid"
       >Email field is required</mat-error
     >
     <mat-error
-      *ngIf="addUserForm.get('email')!.hasError('pattern') && isFormInvalid"
+      *ngIf="userForm.get('email')!.hasError('pattern') && isFormInvalid"
     >
       Email adress should end with @gmail.com
     </mat-error>
     <mat-error
-      *ngIf="addUserForm.get('email')!.hasError('emailExists') && isFormInvalid"
+      *ngIf="userForm.get('email')!.hasError('emailExists') && isFormInvalid"
     >
       Please enter the correct email, this one is already taken
     </mat-error>
@@ -40,18 +38,18 @@
     <mat-label>Age</mat-label>
     <input matInput placeholder="66" formControlName="age" />
     <mat-error
-      *ngIf="addUserForm.get('age')!.hasError('required') && isFormInvalid"
+      *ngIf="userForm.get('age')!.hasError('required') && isFormInvalid"
       >Email field is required</mat-error
     >
     <mat-error
-      *ngIf="addUserForm.get('age')!.hasError('pattern') && isFormInvalid"
+      *ngIf="userForm.get('age')!.hasError('pattern') && isFormInvalid"
     >
       Please use numbers only.
     </mat-error>
-    <mat-error *ngIf="addUserForm.get('age')!.hasError('min') && isFormInvalid">
+    <mat-error *ngIf="userForm.get('age')!.hasError('min') && isFormInvalid">
       Age should be more or equal to 15.
     </mat-error>
-    <mat-error *ngIf="addUserForm.get('age')!.hasError('max') && isFormInvalid">
+    <mat-error *ngIf="userForm.get('age')!.hasError('max') && isFormInvalid">
       Age should be less or equal to 100.
     </mat-error>
   </mat-form-field>
@@ -59,16 +57,12 @@
     <mat-label>Department</mat-label>
     <input matInput placeholder="Example" formControlName="department" />
     <mat-error
-      *ngIf="
-        addUserForm.get('department')!.hasError('required') && isFormInvalid
-      "
+      *ngIf="userForm.get('department')!.hasError('required') && isFormInvalid"
     >
       Department field is required
     </mat-error>
     <mat-error
-      *ngIf="
-        addUserForm.get('department')!.hasError('maxlength') && isFormInvalid
-      "
+      *ngIf="userForm.get('department')!.hasError('maxlength') && isFormInvalid"
     >
       Department name length should be less or equal to 50.
     </mat-error>
@@ -77,12 +71,12 @@
     <mat-label>Company</mat-label>
     <input matInput placeholder="Example inc" formControlName="company" />
     <mat-error
-      *ngIf="addUserForm.get('company')!.hasError('required') && isFormInvalid"
+      *ngIf="userForm.get('company')!.hasError('required') && isFormInvalid"
     >
       Company field is required
     </mat-error>
     <mat-error
-      *ngIf="addUserForm.get('company')!.hasError('maxlength') && isFormInvalid"
+      *ngIf="userForm.get('company')!.hasError('maxlength') && isFormInvalid"
     >
       Company name length should be longer or equal to 5.
     </mat-error>
@@ -91,7 +85,7 @@
     <mat-radio-button value="male">Male</mat-radio-button>
     <mat-radio-button value="female">Female</mat-radio-button>
     <mat-error
-      *ngIf="addUserForm.get('gender')!.hasError('required') && isFormInvalid"
+      *ngIf="userForm.get('gender')!.hasError('required') && isFormInvalid"
       >Gender field is required</mat-error
     >
   </mat-radio-group>
