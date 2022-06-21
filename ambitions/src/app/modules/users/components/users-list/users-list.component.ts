@@ -3,6 +3,8 @@ import { FavoritesService } from 'src/app/modules/shared/services/favorites.serv
 import { FAVORITE } from 'src/app/modules/shared/enums/favoriteCards';
 import { IUser } from '../../interfaces/user';
 import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-users-list',
@@ -11,8 +13,8 @@ import { Router } from '@angular/router';
 })
 export class UsersListComponent implements OnInit {
   @Input() users!: IUser[];
-
-  @Output() toggleIsFavoriteEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Output() toggleIsFavoriteEvent: EventEmitter<IUser> =
+    new EventEmitter<IUser>();
 
   constructor(
     private favoritesService: FavoritesService,

@@ -9,7 +9,7 @@ import { IVehicle } from '../../interfaces/vehicle';
   styleUrls: ['./vehicles-list.component.scss'],
 })
 export class VehiclesListComponent implements OnInit {
-  @Input() vehicles!: IVehicle[];
+  @Input() vehicles: IVehicle[];
 
   @Output() toggleIsFavoriteEvent: EventEmitter<any> = new EventEmitter<any>();
 

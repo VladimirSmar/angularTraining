@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  ValidationErrors,
+} from '@angular/forms';
 import { delay, map, Observable, of } from 'rxjs';
 import { IUser } from '../interfaces/user';
 import { UsersService } from './users.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersValidatorService {
-  users!: IUser[];
+  users: IUser[];
 
   constructor(private usersService: UsersService) {
-    this.users = this.usersService.getUsers();
+    this.usersService.getUsers().subscribe((users) => {
+      this.users = users;
+    });
   }
 
   checkIfEmailExists(email: string): Observable<boolean> {

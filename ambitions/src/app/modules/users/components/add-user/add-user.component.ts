@@ -1,7 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { combineLatest, merge, Observable } from 'rxjs';
-import { IUser } from '../../interfaces/user';
 import { UsersValidatorService } from '../../services/users-validator.service';
 
 @Component({
@@ -10,35 +8,20 @@ import { UsersValidatorService } from '../../services/users-validator.service';
   styleUrls: ['./add-user.component.scss'],
 })
 export class AddUserComponent implements OnInit {
-  @Input() userGroup: FormGroup = new FormGroup({});
-  @Input() user?: IUser;
-  @Input() isFormInvalid!: boolean;
-  @Input() key!: string;
+  @Input() isFormInvalid: boolean;
+  @Output() emitUserFormEvent: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
-  userForm!: FormGroup;
-  nameChange$: Observable<any>;
+  userForm: FormGroup;
 
   constructor(
     private _formBuilder: FormBuilder,
     private usersValidatorService: UsersValidatorService
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.createAddUserForm();
-    this.userGroup.addControl(this.key, this.userForm);
-    this.userGroup.patchValue({ [this.key]: this.user });
-    combineLatest(
-      this.userGroup.get('user.firstName')!.valueChanges,
-      this.userGroup.get('user.lastName')!.valueChanges
-    ).subscribe(([firstName, lastName]) => {
-      this.createEmailValue(firstName, lastName);
-    });
   }
 
-  createEmailValue(firstName: string, lastName: string) {
-    this.userGroup
-      .get(this.key)!
-      .patchValue({ ['email']: firstName + lastName + '@gmail.com' });
+  ngOnInit(): void {
+    this.emitUserFormEvent.emit(this.userForm);
   }
 
   createAddUserForm(): void {

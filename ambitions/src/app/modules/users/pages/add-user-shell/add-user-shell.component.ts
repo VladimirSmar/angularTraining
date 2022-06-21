@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { combineLatest, Observable } from 'rxjs';
 import { UsersService } from 'src/app/modules/users/services/users.service';
 
 @Component({
@@ -13,8 +14,17 @@ export class AddUserShellComponent implements OnInit {
 
   userGroup: FormGroup = new FormGroup({});
   isFormInvalid: boolean = false;
+  nameChange$: Observable<any>;
 
   ngOnInit(): void {}
+
+  onUserFormInit(userForm: any): void {
+    this.userGroup.addControl('user', userForm);
+  }
+
+  onAddressesFormsArrayInit(addressesForm: any) : void {
+    this.userGroup.addControl('addresses', addressesForm);
+  }
 
   addNewUser(): void {
     this.userGroup.markAllAsTouched();

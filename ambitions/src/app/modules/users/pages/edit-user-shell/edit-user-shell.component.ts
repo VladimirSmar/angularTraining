@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { IUser } from '../../interfaces/user';
 import { UsersService } from '../../services/users.service';
 
@@ -11,17 +11,24 @@ import { UsersService } from '../../services/users.service';
 export class EditUserShellComponent implements OnInit {
   userId: number;
   user: IUser;
+  hasUnsavedChanges: boolean = true;
 
   constructor(
     private usersService: UsersService,
     private route: ActivatedRoute
   ) {
-    this.route.paramMap.subscribe( params => {
-      this.userId = +params.get('id')!
-    })
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.userId = +params.get('id')!;
+    });
   }
 
   ngOnInit(): void {
-    this.user = this.usersService.getUserById(this.userId);
+    this.usersService.getUserById(this.userId).subscribe((user: IUser) => {
+      this.user = user;
+    });
+  }
+
+  canDeactivate(hasUnsavedChanges: boolean): void {
+    this.hasUnsavedChanges = hasUnsavedChanges;
   }
 }

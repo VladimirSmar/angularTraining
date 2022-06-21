@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { delay, Observable, of } from 'rxjs';
 import { IUser } from 'src/app/modules/users/interfaces/user';
 import { IAddress } from '../interfaces/address';
 
@@ -68,12 +69,16 @@ export class UsersService {
 
   constructor() {}
 
-  getUsers(): IUser[] {
-    return this.users;
+  getUsers(filter: string = ''): Observable<IUser[]> {
+    return of(
+      this.users.filter((user) => {
+        return user.firstName.toLowerCase().includes(filter) || user.lastName.toLowerCase().includes(filter);
+      })
+    ).pipe(delay(1000));
   }
 
-  getUserById(id: number): IUser {
-    return this.users.find((user) => user.id == id)!;
+  getUserById(id: number): Observable<IUser> {
+    return of(this.users.find((user) => user.id == id)!);
   }
 
   addNewUser(user: IUser, addresses: Array<IAddress>): void {
@@ -92,9 +97,9 @@ export class UsersService {
     this.users.push(newUser);
   }
 
-  editUser(user: IUser, addresses: Array<IAddress>): void {
+  editUser(id: number, user: IUser, addresses: Array<IAddress>): void {
     let modifiedUser: IUser = {
-      id: user.id,
+      id: id,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
@@ -106,7 +111,7 @@ export class UsersService {
       addresses: addresses,
     };
 
-    this.users.map((user) =>
+    this.users = this.users.map((user) =>
       user.id == modifiedUser.id ? modifiedUser : user
     );
   }

@@ -1,7 +1,7 @@
 <div class="edit-user-container">
   <div class="edit-user">
     <div class="edit-user_form-wrapper">
-      <app-edit-user [user]="user"></app-edit-user>
+      <app-edit-user (emitHasUnsavedChangesEvent)="canDeactivate($event)" [user]="user"></app-edit-user>
     </div>
   </div>
 </div>

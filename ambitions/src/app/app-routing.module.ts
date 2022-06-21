@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LeaveEditUserGuard } from './modules/core/guards/leave-edit-user.guard';
+
 import { AddUserShellComponent } from './modules/users/pages/add-user-shell/add-user-shell.component';
 import { EditUserShellComponent } from './modules/users/pages/edit-user-shell/edit-user-shell.component';
 import { UsersListShellComponent } from './modules/users/pages/users-list-shell/users-list-shell.component';

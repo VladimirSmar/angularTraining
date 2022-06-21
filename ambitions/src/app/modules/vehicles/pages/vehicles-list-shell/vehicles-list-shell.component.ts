@@ -13,7 +13,8 @@ import { FavoritesService } from 'src/app/modules/shared/services/favorites.serv
   styleUrls: ['./vehicles-list-shell.component.scss'],
 })
 export class VehiclesListShellComponent implements OnInit {
-  vehicles!: IVehicle[];
+  vehicles: IVehicle[];
+  favoritesIds: number[];
 
   constructor(
     private vehiclesService: VehiclesService,
@@ -21,16 +22,20 @@ export class VehiclesListShellComponent implements OnInit {
   ) {}
 
   get favorites(): Array<IVehicle> {
-    let favoritesId: number[] = this.favoritesService.getFavoritesData(
+    this.favoritesService.getFavorites(
       FAVORITE.Vehicle
-    );
+    ).subscribe((favoritesId) => {
+      this.favoritesIds = favoritesId;
+    });
     return this.vehicles.filter((vehicle) => {
-      return favoritesId.includes(vehicle.id);
+      return this.favoritesIds.includes(vehicle.id);
     });
   }
 
   ngOnInit(): void {
-    this.vehicles = this.vehiclesService.getVehiclesData();
+    this.vehiclesService.getVehiclesData().subscribe((vehicles: IVehicle[]) => {
+      this.vehicles = vehicles;
+    });
   }
 
   toggleIsFavorite(vehicle: IVehicle): void {

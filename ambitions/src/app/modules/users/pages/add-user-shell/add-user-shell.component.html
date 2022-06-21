@@ -9,11 +9,10 @@
         novalidate
       >
         <app-add-user
-          [userGroup]="userGroup"
-          [key]="'user'"
+          (emitUserForm)="onUserFormInit($event)"
           [isFormInvalid]="isFormInvalid"
         ></app-add-user>
-        <app-addresses [userGroup]="userGroup" [key]="'addresses'" [isFormInvalid]="isFormInvalid"></app-addresses>
+        <app-addresses (emitAddressesForm)="onAddressesFormsArrayInit($event)" [isFormInvalid]="isFormInvalid"></app-addresses>
         <button class="add-user_submit-button" type="submit">Submit</button>
       </form>
     </div>

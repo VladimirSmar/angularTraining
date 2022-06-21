@@ -1,5 +1,13 @@
 <div class="users-list-shell">
   <div class="users-container">
+    <mat-form-field class="searchField">
+      <input
+        [formControl]="searchControl"
+        matInput
+        placeholder="Search for users"
+        class="example-right-align"
+      />
+    </mat-form-field>
     <app-users-list
       [users]="this.users"
       (toggleIsFavoriteEvent)="toggleIsFavorite($event)"

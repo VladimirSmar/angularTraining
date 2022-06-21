@@ -6,6 +6,8 @@ import { FAVORITE } from 'src/app/modules/shared/enums/favoriteCards';
 
 import { UsersService } from '../../services/users.service';
 import { FavoritesService } from 'src/app/modules/shared/services/favorites.service';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-users-list-shell',
@@ -14,6 +16,8 @@ import { FavoritesService } from 'src/app/modules/shared/services/favorites.serv
 })
 export class UsersListShellComponent implements OnInit {
   users: IUser[] = [];
+  favoritesIds: number[];
+  searchControl = new FormControl();
 
   constructor(
     private usersService: UsersService,
@@ -21,16 +25,33 @@ export class UsersListShellComponent implements OnInit {
   ) {}
 
   get favorites(): Array<IUser> {
-    let favoritesId: number[] = this.favoritesService.getFavoritesData(
-      FAVORITE.User
-    );
-    return this.users.filter((user) => {
-      return favoritesId.includes(user.id);
+    this.favoritesService
+      .getFavorites(FAVORITE.User)
+      .subscribe((favoritesIds) => {
+        this.favoritesIds = favoritesIds;
+      });
+    return this.users.filter((user: IUser) => {
+      return this.favoritesIds.includes(user.id);
     });
   }
 
   ngOnInit(): void {
-    this.users = this.usersService.getUsers();
+    this.usersService.getUsers().subscribe((users: IUser[]) => {
+      this.users = users;
+    });
+    this.searchControl.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((value) => {
+        this.usersService
+          .getUsers(value.toLowerCase())
+          .subscribe((users: IUser[]) => {
+            this.users = users;
+          });
+      });
+  }
+
+  searchForUsers() {
+    this.searchControl.value;
   }
 
   toggleIsFavorite(user: IUser): void {

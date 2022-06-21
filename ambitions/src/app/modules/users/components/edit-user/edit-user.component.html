@@ -6,15 +6,12 @@
   novalidate
 >
   <app-add-user
-    [userGroup]="userGroup"
-    [user]="user"
-    [key]="'user'"
+    (emitUserFormEvent)="onUserFormInit($event)"
     [isFormInvalid]="isFormInvalid"
   ></app-add-user>
   <app-addresses
-    [userGroup]="userGroup"
-    [user]="user"
-    [key]="'addresses'"
+    (emitAddressesFormsArrayEvent)="onAddressesFormsArrayInit($event)"
+    [addresses]="user.addresses"
     [isFormInvalid]="isFormInvalid"
   ></app-addresses>
   <button class="edit-user_submit-button" type="submit">Save changes</button>

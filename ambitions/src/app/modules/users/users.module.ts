@@ -19,6 +19,7 @@ import { AddressComponent } from './components/address/address.component';
 import { AddressesComponent } from './components/addresses/addresses.component';
 import { EditUserShellComponent } from './pages/edit-user-shell/edit-user-shell.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { LeaveEditUserGuard } from '../core/guards/leave-edit-user.guard';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
   ],
   exports: [UsersListShellComponent],
 })
