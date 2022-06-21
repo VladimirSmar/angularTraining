@@ -23,6 +23,10 @@ export class EditUserShellComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUser();
+  }
+
+  getUser(): void {
     this.usersService.getUserById(this.userId).subscribe((user: IUser) => {
       this.user = user;
     });

@@ -1,9 +1,9 @@
 <div class="vehicles-list-shell">
   <div class="vehicles-container">
     <app-vehicles-list
-      [vehicles]="this.vehicles"
+      [vehicles]="vehicles"
       (toggleIsFavoriteEvent)="toggleIsFavorite($event)"
     ></app-vehicles-list>
   </div>
-  <app-favorites [favorites]="this.favorites"></app-favorites>
+  <app-favorites [favorites]="favorites"></app-favorites>
 </div>

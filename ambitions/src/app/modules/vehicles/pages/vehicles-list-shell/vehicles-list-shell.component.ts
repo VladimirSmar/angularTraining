@@ -22,12 +22,12 @@ export class VehiclesListShellComponent implements OnInit {
   ) {}
 
   get favorites(): Array<IVehicle> {
-    this.favoritesService.getFavorites(
-      FAVORITE.Vehicle
-    ).subscribe((favoritesId) => {
-      this.favoritesIds = favoritesId;
-    });
-    return this.vehicles.filter((vehicle) => {
+    this.favoritesService
+      .getFavorites(FAVORITE.Vehicle)
+      .subscribe((favoritesId) => {
+        this.favoritesIds = favoritesId;
+      });
+    return this.vehicles?.filter((vehicle: IVehicle) => {
       return this.favoritesIds.includes(vehicle.id);
     });
   }

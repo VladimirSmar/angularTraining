@@ -36,22 +36,21 @@ export class UsersListShellComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.usersService.getUsers().subscribe((users: IUser[]) => {
-      this.users = users;
-    });
+    this.getUsers();
+
     this.searchControl.valueChanges
       .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((value) => {
-        this.usersService
-          .getUsers(value.toLowerCase())
-          .subscribe((users: IUser[]) => {
-            this.users = users;
-          });
+      .subscribe((value: string) => {
+        this.getUsers(value);
       });
   }
 
-  searchForUsers() {
-    this.searchControl.value;
+  getUsers(filter: string = ''): void {
+    this.usersService
+      .getUsers(filter.toLowerCase())
+      .subscribe((users: IUser[]) => {
+        this.users = users;
+      });
   }
 
   toggleIsFavorite(user: IUser): void {

@@ -8,6 +8,7 @@
         (submit)="addNewUser()"
         novalidate
       >
+      <h4>Add user</h4>
         <app-add-user
           (emitUserForm)="onUserFormInit($event)"
           [isFormInvalid]="isFormInvalid"

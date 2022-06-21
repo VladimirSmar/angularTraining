@@ -71,14 +71,16 @@ export class UsersService {
 
   getUsers(filter: string = ''): Observable<IUser[]> {
     return of(
-      this.users.filter((user) => {
-        return user.firstName.toLowerCase().includes(filter) || user.lastName.toLowerCase().includes(filter);
+      this.users.filter((user: IUser) => {
+        return `${user.firstName} ${user.lastName}`
+          .toLowerCase()
+          .includes(filter);
       })
     ).pipe(delay(1000));
   }
 
   getUserById(id: number): Observable<IUser> {
-    return of(this.users.find((user) => user.id == id)!);
+    return of(this.users.find((user: IUser) => user.id == id)!);
   }
 
   addNewUser(user: IUser, addresses: Array<IAddress>): void {

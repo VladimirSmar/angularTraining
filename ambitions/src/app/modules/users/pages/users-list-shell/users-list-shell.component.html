@@ -9,9 +9,9 @@
       />
     </mat-form-field>
     <app-users-list
-      [users]="this.users"
+      [users]="users"
       (toggleIsFavoriteEvent)="toggleIsFavorite($event)"
     ></app-users-list>
   </div>
-  <app-favorites [favorites]="this.favorites"></app-favorites>
+  <app-favorites [favorites]="favorites"></app-favorites>
 </div>
