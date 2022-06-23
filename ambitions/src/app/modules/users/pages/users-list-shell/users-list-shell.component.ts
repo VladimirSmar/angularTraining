@@ -6,8 +6,7 @@ import { FAVORITE } from 'src/app/modules/shared/enums/favoriteCards';
 
 import { UsersService } from '../../services/users.service';
 import { FavoritesService } from 'src/app/modules/shared/services/favorites.service';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-users-list-shell',
@@ -17,7 +16,6 @@ import { FormControl } from '@angular/forms';
 export class UsersListShellComponent implements OnInit {
   users: IUser[] = [];
   favoritesIds: number[];
-  searchControl = new FormControl();
 
   constructor(
     private usersService: UsersService,
@@ -37,12 +35,6 @@ export class UsersListShellComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
-
-    this.searchControl.valueChanges
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((value: string) => {
-        this.getUsers(value);
-      });
   }
 
   getUsers(filter: string = ''): void {
