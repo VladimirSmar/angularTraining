@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { FAVORITE } from '../enums/favoriteCards';
 
 type FavoriteMap = {
@@ -18,7 +18,7 @@ export class FavoritesService {
   constructor() {}
 
   getFavorites(type: FAVORITE): Observable<Array<number>> {
-    return of(favoriteMap[type]);
+    return of(favoriteMap[type]).pipe(delay(1000));
   }
 
   toggleIsFavorite(id: number, type: FAVORITE): void {

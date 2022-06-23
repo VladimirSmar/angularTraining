@@ -14,6 +14,7 @@ export class AddressComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    this.enableZipInput();
   }
 
   enableZipInput(): void {

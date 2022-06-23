@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { IUser } from 'src/app/modules/users/interfaces/user';
 
@@ -13,9 +13,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './users-list-shell.component.html',
   styleUrls: ['./users-list-shell.component.scss'],
 })
-export class UsersListShellComponent implements OnInit {
+export class UsersListShellComponent implements OnInit, OnDestroy {
   users: IUser[] = [];
   favoritesIds: number[];
+  _subscriptions: Subscription[] = [];
 
   constructor(
     private usersService: UsersService,
@@ -23,13 +24,15 @@ export class UsersListShellComponent implements OnInit {
   ) {}
 
   get favorites(): Array<IUser> {
-    this.favoritesService
-      .getFavorites(FAVORITE.User)
-      .subscribe((favoritesIds) => {
-        this.favoritesIds = favoritesIds;
-      });
-    return this.users.filter((user: IUser) => {
-      return this.favoritesIds.includes(user.id);
+    this._subscriptions.push(
+      this.favoritesService
+        .getFavorites(FAVORITE.User)
+        .subscribe((favoritesIds) => {
+          this.favoritesIds = favoritesIds;
+        })
+    );
+    return this.users?.filter((user: IUser) => {
+      return this.favoritesIds?.includes(user.id);
     });
   }
 
@@ -37,12 +40,18 @@ export class UsersListShellComponent implements OnInit {
     this.getUsers();
   }
 
+  ngOnDestroy(): void {
+    this._subscriptions.forEach((sub) => sub.unsubscribe());
+  }
+
   getUsers(filter: string = ''): void {
-    this.usersService
-      .getUsers(filter.toLowerCase())
-      .subscribe((users: IUser[]) => {
-        this.users = users;
-      });
+    this._subscriptions.push(
+      this.usersService
+        .getUsers(filter.toLowerCase())
+        .subscribe((users: IUser[]) => {
+          this.users = users;
+        })
+    );
   }
 
   toggleIsFavorite(user: IUser): void {

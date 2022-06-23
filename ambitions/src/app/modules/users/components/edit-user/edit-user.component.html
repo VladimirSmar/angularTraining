@@ -11,7 +11,7 @@
   ></app-add-user>
   <app-addresses
     (emitAddressesFormsArrayEvent)="onAddressesFormsArrayInit($event)"
-    [addresses]="user.addresses"
+    [user]="user"
     [isFormInvalid]="isFormInvalid"
   ></app-addresses>
   <button class="edit-user_submit-button" type="submit">Save changes</button>

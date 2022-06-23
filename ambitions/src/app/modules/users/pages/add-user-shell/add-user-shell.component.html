@@ -10,10 +10,10 @@
       >
       <h4>Add user</h4>
         <app-add-user
-          (emitUserForm)="onUserFormInit($event)"
+          (emitUserFormEvent)="onUserFormInit($event)"
           [isFormInvalid]="isFormInvalid"
         ></app-add-user>
-        <app-addresses (emitAddressesForm)="onAddressesFormsArrayInit($event)" [isFormInvalid]="isFormInvalid"></app-addresses>
+        <app-addresses (emitAddressesFormsArrayEvent)="onAddressesFormsArrayInit($event)" [isFormInvalid]="isFormInvalid"></app-addresses>
         <button class="add-user_submit-button" type="submit">Submit</button>
       </form>
     </div>

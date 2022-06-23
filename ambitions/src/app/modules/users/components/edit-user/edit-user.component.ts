@@ -1,7 +1,13 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { combineLatest, Observable } from 'rxjs';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { combineLatest, Observable, Subscription } from 'rxjs';
 import { IUser } from '../../interfaces/user';
 import { UsersService } from '../../services/users.service';
 
@@ -10,27 +16,58 @@ import { UsersService } from '../../services/users.service';
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss'],
 })
-export class EditUserComponent implements OnInit {
-  @Input() user: IUser;
+export class EditUserComponent implements OnInit, OnDestroy {
+  user$: Observable<IUser>;
+  userId: number;
+  user: IUser;
   userGroup: FormGroup = new FormGroup({});
   isFormInvalid: boolean = false;
-  @Output() emitHasUnsavedChangesEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
+  _subscriptions: Subscription[] = [];
 
-  constructor(private usersService: UsersService, private router: Router) {}
+  @Output() emitHasUnsavedChangesEvent: EventEmitter<boolean> =
+    new EventEmitter<boolean>();
 
-  ngOnInit(): void {}
+  constructor(
+    private usersService: UsersService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this._subscriptions.push(
+      this.route.paramMap.subscribe((params) => {
+        this.userId = +params.get('id')!;
+      })
+    );
+    this.user$ = this.usersService.getUserById(this.userId);
+  }
+
+  ngOnInit(): void {
+    this._subscriptions.push(
+      this.user$.subscribe((user) => {
+        this.user = user;
+        if (this.user) {
+          this.userGroup.patchValue({ user: this.user });
+        }
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this._subscriptions.forEach((sub) => sub.unsubscribe());
+  }
 
   onUserFormInit(userForm: any): void {
     this.userGroup.addControl('user', userForm);
     this.userGroup.get('user.email')!.clearAsyncValidators();
     this.userGroup.get('user.email')!.updateValueAndValidity();
-    this.userGroup.patchValue({ user: this.user });
-    combineLatest(
-      this.userGroup.get('user.firstName')!.valueChanges,
-      this.userGroup.get('user.lastName')!.valueChanges
-    ).subscribe(([firstName, lastName]) => {
-      this.createEmailValue(firstName, lastName);
-    });
+
+    this._subscriptions.push(
+      combineLatest(
+        this.userGroup.get('user.firstName')!.valueChanges,
+        this.userGroup.get('user.lastName')!.valueChanges
+      ).subscribe(([firstName, lastName]) => {
+        this.createEmailValue(firstName, lastName);
+      })
+    );
   }
 
   createEmailValue(firstName: string, lastName: string): void {
@@ -41,13 +78,15 @@ export class EditUserComponent implements OnInit {
 
   onAddressesFormsArrayInit(addressesForm: any): void {
     this.userGroup.addControl('addresses', addressesForm);
-    this.userGroup.patchValue({ addresses: this.user.addresses });
+    if (this.user) {
+      this.userGroup.patchValue({ addresses: this.user.addresses });
+    }
   }
 
   submitChanges(): void {
     this.userGroup.markAllAsTouched();
-    this.emitHasUnsavedChangesEvent.emit(false);
     if (this.userGroup.valid) {
+      this.emitHasUnsavedChangesEvent.emit(false);
       this.usersService.editUser(
         this.user.id,
         this.userGroup.value.user,

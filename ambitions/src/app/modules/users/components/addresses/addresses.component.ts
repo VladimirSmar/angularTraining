@@ -1,14 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IAddress } from '../../interfaces/address';
+import { IUser } from '../../interfaces/user';
 
 @Component({
   selector: 'app-addresses',
   templateUrl: './addresses.component.html',
   styleUrls: ['./addresses.component.scss'],
 })
-export class AddressesComponent implements OnInit {
-  @Input() addresses: IAddress[];
+export class AddressesComponent implements OnInit, OnChanges {
+  @Input() user: IUser;
   @Input() isFormInvalid: boolean;
   @Output() emitAddressesFormsArrayEvent: EventEmitter<FormArray> =
     new EventEmitter<FormArray>();
@@ -22,12 +22,25 @@ export class AddressesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addresses?.forEach((address, index) => {
-      if (index !== 0) {
-        this.addNewAddress();
-      }
-    });
+    if (this.user) {
+      this.user.addresses.forEach((address, index) => {
+        if (index !== 0) {
+          this.addNewAddress();
+        }
+      });
+    }
     this.emitAddressesFormsArrayEvent.emit(this.addressesFormsArray);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.user && changes['user']) {
+      this.user.addresses.forEach((address, index) => {
+        if (index !== 0) {
+          this.addNewAddress();
+        }
+      });
+      this.emitAddressesFormsArrayEvent.emit(this.addressesFormsArray);
+    }
   }
 
   createAddressesGroup(): FormGroup {

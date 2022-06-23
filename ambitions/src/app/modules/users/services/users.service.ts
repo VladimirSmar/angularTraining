@@ -43,9 +43,7 @@ export class UsersService {
           zip: 123123,
         },
         {
-          addressLine: 'asdasdas',
-          city: 'asgasg',
-          zip: 123123,
+          addressLine: 'asdas',
         },
       ],
     },
@@ -80,7 +78,11 @@ export class UsersService {
   }
 
   getUserById(id: number): Observable<IUser> {
-    return of(this.users.find((user: IUser) => user.id == id)!);
+    return of(
+      this.users.find((user: IUser) => {
+        return user.id == id;
+      })!
+    ).pipe(delay(1000));
   }
 
   addNewUser(user: IUser, addresses: Array<IAddress>): void {
@@ -109,7 +111,9 @@ export class UsersService {
       gender: user.gender,
       department: user.department,
       company: user.company,
-      imageUrl: `/assets/images/defaultProfile.jpg`,
+      imageUrl: this.users.find((user) => {
+        return user.id == id;
+      })!.imageUrl,
       addresses: addresses,
     };
 
