@@ -2,7 +2,7 @@
   <div class="favorites-title">Favorites</div>
   <ng-container *ngFor="let favorite of favorites">
     <div class="favorite">
-      {{ favorite.id }}
+      {{favorite.firstName? favorite.firstName + ' ' + favorite.lastName : favorite.name }}
     </div>
   </ng-container>
 </div>

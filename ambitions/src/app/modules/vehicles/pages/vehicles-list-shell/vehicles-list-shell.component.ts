@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 })
 export class VehiclesListShellComponent implements OnInit, OnDestroy {
   vehicles: IVehicle[];
-  favoritesIds: number[];
+  favoritesIds: string[];
   _subscriptions: Subscription[] = [];
 
   constructor(
@@ -32,7 +32,7 @@ export class VehiclesListShellComponent implements OnInit, OnDestroy {
         })
     );
     return this.vehicles?.filter((vehicle: IVehicle) => {
-      return this.favoritesIds?.includes(vehicle.id);
+      return this.favoritesIds?.includes(vehicle.id + '');
     });
   }
 
@@ -51,6 +51,6 @@ export class VehiclesListShellComponent implements OnInit, OnDestroy {
   }
 
   toggleIsFavorite(vehicle: IVehicle): void {
-    this.favoritesService.toggleIsFavorite(vehicle.id, FAVORITE.Vehicle);
+    this.favoritesService.toggleIsFavorite(vehicle.id + '', FAVORITE.Vehicle);
   }
 }

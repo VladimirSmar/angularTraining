@@ -21,7 +21,7 @@ export class VehiclesListComponent implements OnInit {
     this.toggleIsFavoriteEvent.emit(vehicle);
   }
 
-  checkIfFavored(vehicleId: number): boolean {
+  checkIfFavored(vehicleId: string): boolean {
     return this.favoritesService.checkIfFavored(vehicleId, FAVORITE.Vehicle);
   }
 }

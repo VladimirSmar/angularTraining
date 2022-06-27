@@ -1,14 +1,14 @@
 import { IAddress } from './address';
 
 export interface IUser {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   email: string;
   age: number;
   gender: string;
-  department: string;
-  company: string;
+  nationality: string;
+  phone: number;
   imageUrl: string;
   addresses: IAddress[];
 }

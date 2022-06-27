@@ -6,12 +6,26 @@
 }
 
 .cardImage {
-  max-width: 100%;
-  max-height: 100%;
-  height: auto;
-  object-fit: cover;
+  width: 280px;
+  height: 250px;
+}
+
+.user-info {
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+
+.address-list {
+  padding: 5px;
+}
+
+.address-list-title {
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
 }
 
 .addressLine {
+  margin-top: 10px;
   padding-left: 10px;
+  font-weight: bold;
 }

@@ -12,7 +12,7 @@
         class="cardLikeButton"
         id="toggleIsFavoriteButton"
         mat-icon-button
-        [color]="checkIfFavored(vehicle.id) ? 'warn' : ''"
+        [color]="checkIfFavored(vehicle.id + '') ? 'warn' : ''"
         aria-label="Add to favorites"
         (click)="toggleIsFavorite(vehicle)"
       >

@@ -7,6 +7,7 @@ import { FAVORITE } from 'src/app/modules/shared/enums/favoriteCards';
 import { UsersService } from '../../services/users.service';
 import { FavoritesService } from 'src/app/modules/shared/services/favorites.service';
 import { Subscription } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-users-list-shell',
@@ -15,8 +16,13 @@ import { Subscription } from 'rxjs';
 })
 export class UsersListShellComponent implements OnInit, OnDestroy {
   users: IUser[] = [];
-  favoritesIds: number[];
+  favoritesIds: string[];
   _subscriptions: Subscription[] = [];
+
+  length: number = 96;
+  pageIndex: number = 0;
+  pageSize: number = 6;
+  pageSizeOptions: number[] = [6];
 
   constructor(
     private usersService: UsersService,
@@ -47,11 +53,17 @@ export class UsersListShellComponent implements OnInit, OnDestroy {
   getUsers(filter: string = ''): void {
     this._subscriptions.push(
       this.usersService
-        .getUsers(filter.toLowerCase())
+        .getUsers(this.pageIndex, this.pageSize, filter.toLowerCase())
         .subscribe((users: IUser[]) => {
           this.users = users;
         })
     );
+  }
+
+  OnPageChange(event: PageEvent): void {
+    this.pageIndex = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
+    this.getUsers();
   }
 
   toggleIsFavorite(user: IUser): void {

@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class UsersListComponent implements OnInit {
   @Input() users: IUser[];
+  @Input() pageIndex: number;
   @Output() toggleIsFavoriteEvent: EventEmitter<IUser> =
     new EventEmitter<IUser>();
 
@@ -25,11 +26,11 @@ export class UsersListComponent implements OnInit {
     this.toggleIsFavoriteEvent.emit(user);
   }
 
-  checkIfFavored(userId: number): boolean {
+  checkIfFavored(userId: string): boolean {
     return this.favoritesService.checkIfFavored(userId, FAVORITE.User);
   }
 
-  editUser(id: number): void {
-    this.router.navigateByUrl(`/users/edit/${id}`);
+  editUser(id: string): void {
+    this.router.navigateByUrl(`/users/edit/${this.pageIndex}/${id}`);
   }
 }

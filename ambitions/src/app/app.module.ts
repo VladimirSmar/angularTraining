@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { HeaderModule } from './modules/core/header/header.module';
 import { UsersModule } from './modules/users/users.module';
@@ -20,6 +21,7 @@ import { AppComponent } from './app.component';
     VehiclesModule,
     FormsModule,
     HeaderModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

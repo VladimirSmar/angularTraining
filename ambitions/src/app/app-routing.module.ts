@@ -26,7 +26,7 @@ const routes: Routes = [
     component: AddUserShellComponent,
   },
   {
-    path: 'users/edit/:id',
+    path: 'users/edit/:pageIndex/:id',
     component: EditUserShellComponent,
     canDeactivate: [LeaveEditUserGuard],
   },

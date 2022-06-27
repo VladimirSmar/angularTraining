@@ -53,31 +53,33 @@
     </mat-error>
   </mat-form-field>
   <mat-form-field appearance="fill">
-    <mat-label>Department</mat-label>
-    <input matInput placeholder="Example" formControlName="department" />
+    <mat-label>Nationality</mat-label>
+    <input matInput placeholder="Example" formControlName="nationality" />
     <mat-error
-      *ngIf="userForm.get('department')!.hasError('required') && isFormInvalid"
+      *ngIf="userForm.get('nationality')!.hasError('required') && isFormInvalid"
     >
-      Department field is required
+      Nationality field is required
     </mat-error>
     <mat-error
-      *ngIf="userForm.get('department')!.hasError('maxlength') && isFormInvalid"
+      *ngIf="
+        userForm.get('nationality')!.hasError('maxlength') && isFormInvalid
+      "
     >
-      Department name length should be less or equal to 50.
+      Nationality name length should be less or equal to 50.
     </mat-error>
   </mat-form-field>
   <mat-form-field appearance="fill">
-    <mat-label>Company</mat-label>
-    <input matInput placeholder="Example inc" formControlName="company" />
+    <mat-label>Phone</mat-label>
+    <input matInput placeholder="Example inc" formControlName="phone" />
     <mat-error
-      *ngIf="userForm.get('company')!.hasError('required') && isFormInvalid"
+      *ngIf="userForm.get('phone')!.hasError('required') && isFormInvalid"
     >
-      Company field is required
+      Phone field is required
     </mat-error>
     <mat-error
-      *ngIf="userForm.get('company')!.hasError('maxlength') && isFormInvalid"
+      *ngIf="userForm.get('phone')!.hasError('maxlength') && isFormInvalid"
     >
-      Company name length should be longer or equal to 5.
+      Phone length should be longer or equal to 5.
     </mat-error>
   </mat-form-field>
   <mat-radio-group formControlName="gender" aria-label="Gender">

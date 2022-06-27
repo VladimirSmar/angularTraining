@@ -49,8 +49,8 @@ export class AddUserComponent implements OnInit {
           Validators.pattern(/^-?(0|[1-9]\d*)?$/),
         ],
       ],
-      department: ['', [Validators.required, Validators.maxLength(50)]],
-      company: ['', [Validators.required, Validators.minLength(6)]],
+      nationality: ['', [Validators.required, Validators.maxLength(50)]],
+      phone: ['', [Validators.required, Validators.minLength(6)]],
       gender: ['', [Validators.required]],
     });
   }

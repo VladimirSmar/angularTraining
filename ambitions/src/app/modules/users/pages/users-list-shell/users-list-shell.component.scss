@@ -1,3 +1,8 @@
+.users-shell {
+  margin: 0;
+  padding: 0;
+}
+
 .users-list-shell {
   display: flex;
   flex: 1 1 0;
@@ -5,6 +10,15 @@
 }
 
 .users-container {
-  max-width: 75vw;
-  width: 75vw;
+  width: 80vw;
+}
+
+mat-paginator {
+  display: flex;
+  border-top: 1px solid black;
+  justify-content: center;
+}
+
+.favorite-users {
+  border-left: 1px solid black;
 }

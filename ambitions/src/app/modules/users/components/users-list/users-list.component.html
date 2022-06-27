@@ -2,7 +2,7 @@
   <ng-container *ngFor="let user of users">
     <app-card>
       <div class="title">
-        {{ user.firstName }} {{ user.lastName }}, {{ user.age }}
+        {{ user.firstName }} {{ user.lastName }}, <br/> {{ user.age }}
         <button mat-icon-button color="primary" (click)="editUser(user.id)">
           <mat-icon>edit</mat-icon>
         </button>
@@ -10,11 +10,11 @@
       <div class="subtitle">{{ user.email }}</div>
       <img class="cardImage" src="{{ user.imageUrl }}" alt="Card Image" />
       <div class="cardContent">
-        <div>Gender: {{ user.gender }}</div>
-        <div>Company: {{ user.company }}</div>
-        <div>Department: {{ user.department }}</div>
-        <div>
-          Addresses:
+        <div class="user-info">Gender: {{ user.gender }}</div>
+        <div class="user-info">Nationality: {{ user.nationality }}</div>
+        <div class="user-info">Phone: {{ user.phone }}</div>
+        <div class="address-list">
+          <span class="address-list-title">Addresses:</span>
           <ng-container *ngFor="let address of user.addresses; index as i">
             <div
               class="addressLine"

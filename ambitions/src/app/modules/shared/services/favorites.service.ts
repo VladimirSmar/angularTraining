@@ -3,7 +3,7 @@ import { delay, Observable, of } from 'rxjs';
 import { FAVORITE } from '../enums/favoriteCards';
 
 type FavoriteMap = {
-  [key in FAVORITE]: number[];
+  [key in FAVORITE]: string[];
 };
 
 const favoriteMap: FavoriteMap = {
@@ -17,17 +17,17 @@ const favoriteMap: FavoriteMap = {
 export class FavoritesService {
   constructor() {}
 
-  getFavorites(type: FAVORITE): Observable<Array<number>> {
+  getFavorites(type: FAVORITE): Observable<Array<string>> {
     return of(favoriteMap[type]).pipe(delay(1000));
   }
 
-  toggleIsFavorite(id: number, type: FAVORITE): void {
+  toggleIsFavorite(id: string, type: FAVORITE): void {
     favoriteMap[type].includes(id)
       ? favoriteMap[type].splice(favoriteMap[type].indexOf(id), 1)
       : favoriteMap[type].push(id);
   }
 
-  checkIfFavored(id: number, type: FAVORITE): boolean {
+  checkIfFavored(id: string, type: FAVORITE): boolean {
     return favoriteMap[type].includes(id)
       ? true
       : false;

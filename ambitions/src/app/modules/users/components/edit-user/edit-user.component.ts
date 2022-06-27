@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  Input,
   OnDestroy,
   OnInit,
   Output,
@@ -18,7 +19,8 @@ import { UsersService } from '../../services/users.service';
 })
 export class EditUserComponent implements OnInit, OnDestroy {
   user$: Observable<IUser>;
-  userId: number;
+  userId: string;
+  pageIndex: string;
   user: IUser;
   userGroup: FormGroup = new FormGroup({});
   isFormInvalid: boolean = false;
@@ -34,10 +36,11 @@ export class EditUserComponent implements OnInit, OnDestroy {
   ) {
     this._subscriptions.push(
       this.route.paramMap.subscribe((params) => {
-        this.userId = +params.get('id')!;
+        this.userId = params.get('id')!;
+        this.pageIndex = params.get('pageIndex')!;
       })
     );
-    this.user$ = this.usersService.getUserById(this.userId);
+    this.user$ = this.usersService.getUserById(this.pageIndex, this.userId);
   }
 
   ngOnInit(): void {

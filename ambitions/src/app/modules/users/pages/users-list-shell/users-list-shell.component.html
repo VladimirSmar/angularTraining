@@ -1,10 +1,27 @@
-<div class="users-list-shell">
-  <div class="users-container">
-    <app-search (searchInputChanged)="getUsers($event)"></app-search>
-    <app-users-list
-      [users]="users"
-      (toggleIsFavoriteEvent)="toggleIsFavorite($event)"
-    ></app-users-list>
+<div class="users-shell">
+  <app-search class="search-field" (searchInputChanged)="getUsers($event)"></app-search>
+
+  <div class="users-list-shell">
+    <div class="users-container">
+      <app-users-list
+        class="users-list"
+        [users]="users"
+        [pageIndex]="pageIndex"
+        (toggleIsFavoriteEvent)="toggleIsFavorite($event)"
+      ></app-users-list>
+    </div>
+    <app-favorites
+      class="favorite-users"
+      [favorites]="favorites"
+    ></app-favorites>
   </div>
-  <app-favorites [favorites]="favorites"></app-favorites>
+
+  <mat-paginator
+    [length]="length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    aria-label="Select page"
+    (page)="OnPageChange($event)"
+  >
+  </mat-paginator>
 </div>
