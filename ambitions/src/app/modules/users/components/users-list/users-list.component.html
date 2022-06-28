@@ -2,7 +2,8 @@
   <ng-container *ngFor="let user of users">
     <app-card>
       <div class="title">
-        {{ user.firstName }} {{ user.lastName }}, <br/> {{ user.age }}
+        {{ user.firstName }} {{ user.lastName }}, <br />
+        {{ user.age }}
         <button mat-icon-button color="primary" (click)="editUser(user.id)">
           <mat-icon>edit</mat-icon>
         </button>
@@ -31,16 +32,23 @@
           </ng-container>
         </div>
       </div>
-      <button
-        class="cardLikeButton"
-        id="toggleIsFavoriteButton"
-        mat-icon-button
-        [color]="checkIfFavored(user.id) ? 'warn' : ''"
-        aria-label="Add to favorites"
-        (click)="toggleIsFavorite(user)"
-      >
-        <mat-icon>favorite</mat-icon>
-      </button>
+      <div class="cardActions">
+        <button
+          id="toggleIsFavoriteButton"
+          mat-icon-button
+          [color]="checkIfFavored(user.id) ? 'warn' : ''"
+          aria-label="Add to favorites"
+          (click)="toggleIsFavorite(user)"
+        >
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button (click)="exportUserToExcel(user.id)">
+          <mat-icon matTooltip="Import to Excel">import_export</mat-icon>
+        </button>
+        <button mat-icon-button (click)="saveUser(user.id)">
+          <mat-icon>save</mat-icon>
+        </button>
+      </div>
     </app-card>
   </ng-container>
 </div>

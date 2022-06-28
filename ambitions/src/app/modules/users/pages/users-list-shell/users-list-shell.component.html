@@ -1,5 +1,22 @@
 <div class="users-shell">
-  <app-search class="search-field" (searchInputChanged)="getUsers($event)"></app-search>
+  <div class="users-shell-tools">
+    <app-search
+      class="search-field"
+      (searchInputChanged)="getUsers($event)"
+    ></app-search>
+    <button mat-stroked-button class="refresh-button" color="primary" (click)="refreshClickSubject.next(1)">
+      <mat-icon>refresh</mat-icon>
+    </button>
+
+    <button
+      mat-stroked-button
+      class="only-one-button"
+      color="primary"
+      (click)="onlyFirstClickSubject.next(1)"
+    >
+      <mat-icon>first_page</mat-icon>
+    </button>
+  </div>
 
   <div class="users-list-shell">
     <div class="users-container">
@@ -8,6 +25,8 @@
         [users]="users"
         [pageIndex]="pageIndex"
         (toggleIsFavoriteEvent)="toggleIsFavorite($event)"
+        (exportUserToExcelEvent)="exportUserToExcel($event)"
+        (saveUserEvent)="saveUser($event)"
       ></app-users-list>
     </div>
     <app-favorites

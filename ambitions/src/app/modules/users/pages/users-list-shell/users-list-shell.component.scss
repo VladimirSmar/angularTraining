@@ -9,6 +9,25 @@
   flex-wrap: nowrap;
 }
 
+.users-shell-tools {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.search-field {
+  flex-grow: 1;
+}
+
+.refresh-button {
+  height: 46px;
+}
+
+.only-one-button {
+  height: 46px;
+}
+
 .users-container {
   width: 80vw;
 }

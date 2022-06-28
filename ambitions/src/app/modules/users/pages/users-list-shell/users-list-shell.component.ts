@@ -6,7 +6,15 @@ import { FAVORITE } from 'src/app/modules/shared/enums/favoriteCards';
 
 import { UsersService } from '../../services/users.service';
 import { FavoritesService } from 'src/app/modules/shared/services/favorites.service';
-import { Subscription } from 'rxjs';
+import {
+  concatMap,
+  exhaustMap,
+  mergeMap,
+  Subject,
+  Subscription,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
@@ -23,6 +31,11 @@ export class UsersListShellComponent implements OnInit, OnDestroy {
   pageIndex: number = 0;
   pageSize: number = 6;
   pageSizeOptions: number[] = [6];
+
+  refreshClickSubject = new Subject();
+  onlyFirstClickSubject = new Subject();
+  exportSubj = new Subject();
+  saveSubj = new Subject();
 
   constructor(
     private usersService: UsersService,
@@ -44,6 +57,10 @@ export class UsersListShellComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getUsers();
+    this.refreshUsers();
+    this.onlyFirstQueueLog();
+    this.exportUserToExcelSubject();
+    this.saveUserSubject();
   }
 
   ngOnDestroy(): void {
@@ -68,5 +85,69 @@ export class UsersListShellComponent implements OnInit, OnDestroy {
 
   toggleIsFavorite(user: IUser): void {
     this.favoritesService.toggleIsFavorite(user.id, FAVORITE.User);
+  }
+
+  refreshUsers(): void {
+    this._subscriptions.push(
+      this.refreshClickSubject
+        .pipe(
+          switchMap(() => {
+            return this.usersService.getUsers(this.pageIndex, this.pageSize);
+          })
+        )
+        .subscribe((users: IUser[]) => {
+          this.users = users;
+        })
+    );
+  }
+
+  onlyFirstQueueLog(): void {
+    this._subscriptions.push(
+      this.onlyFirstClickSubject
+        .pipe(
+          exhaustMap(() => {
+            return this.usersService.getUsers(this.pageIndex, this.pageSize);
+          })
+        )
+        .subscribe((users: IUser[]) => {
+          this.users = users;
+        })
+    );
+  }
+
+  exportUserToExcelSubject(): void {
+    this._subscriptions.push(
+      this.exportSubj
+        .pipe(
+          mergeMap((req: any) => {
+            return this.usersService.exportUserToExcel(req);
+          })
+        )
+        .subscribe((data) => {
+          console.log(data);
+        })
+    );
+  }
+
+  exportUserToExcel(id: string): void {
+    this.exportSubj.next(id);
+  }
+
+  saveUserSubject(): void {
+    this._subscriptions.push(
+      this.saveSubj
+        .pipe(
+          concatMap((req: any) => {
+            return this.usersService.saveUser(req);
+          })
+        )
+        .subscribe((data) => {
+          console.log(data);
+        })
+    );
+  }
+
+  saveUser(id: string): void {
+    this.saveSubj.next(id);
   }
 }

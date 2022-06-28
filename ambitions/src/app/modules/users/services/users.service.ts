@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, of, delay } from 'rxjs';
 import { IUser } from 'src/app/modules/users/interfaces/user';
 import { IAddress } from '../interfaces/address';
 import { IUserApi } from '../interfaces/userApi';
@@ -70,6 +70,27 @@ export class UsersService {
     return users.filter((user: IUser) => {
       return user.id == id;
     })[0];
+  }
+
+  createDelay(): number {
+    const min = 1000;
+    const max = 3000;
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
+  }
+
+  exportUserToExcel(user: string): Observable<string> {
+    console.log('Loading - ' + user);
+    return of(user)
+      .pipe(
+        delay(this.createDelay()));
+  }
+
+  saveUser(user: string): Observable<string> {
+    console.log('Loading - ' + user);
+    return of(user)
+      .pipe(
+        delay(this.createDelay()));
   }
 
   addNewUser(user: IUserApi, addresses: Array<IAddress>): void {}

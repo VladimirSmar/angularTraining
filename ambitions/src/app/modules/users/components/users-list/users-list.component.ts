@@ -14,6 +14,8 @@ export class UsersListComponent implements OnInit {
   @Input() pageIndex: number;
   @Output() toggleIsFavoriteEvent: EventEmitter<IUser> =
     new EventEmitter<IUser>();
+  @Output() exportUserToExcelEvent: EventEmitter<string> = new EventEmitter<string>();
+  @Output() saveUserEvent: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private favoritesService: FavoritesService,
@@ -28,6 +30,14 @@ export class UsersListComponent implements OnInit {
 
   checkIfFavored(userId: string): boolean {
     return this.favoritesService.checkIfFavored(userId, FAVORITE.User);
+  }
+
+  exportUserToExcel(id: string): void {
+    this.exportUserToExcelEvent.emit(id);
+  }
+
+  saveUser(id: string): void {
+    this.saveUserEvent.emit(id);
   }
 
   editUser(id: string): void {
