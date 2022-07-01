@@ -6,11 +6,6 @@ import { AuthGuard } from './modules/core/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
-  {
     path: 'login',
     component: LoginShellComponent,
   },
@@ -19,20 +14,24 @@ const routes: Routes = [
     component: SignupShellComponent,
   },
   {
-    path: 'users',
+    path: '',
     canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./modules/users/users.module').then(
-        (module) => module.UsersModule
-      ),
-  },
-  {
-    path: 'vehicles',
-    canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./modules/vehicles/vehicles.module').then(
-        (module) => module.VehiclesModule
-      ),
+    children: [
+      {
+        path: 'users',
+        loadChildren: () =>
+          import('./modules/users/users.module').then(
+            (module) => module.UsersModule
+          ),
+      },
+      {
+        path: 'vehicles',
+        loadChildren: () =>
+          import('./modules/vehicles/vehicles.module').then(
+            (module) => module.VehiclesModule
+          ),
+      },
+    ],
   },
 ];
 
