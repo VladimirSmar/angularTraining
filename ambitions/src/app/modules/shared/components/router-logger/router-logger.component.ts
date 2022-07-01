@@ -15,9 +15,7 @@ import { Subscription } from 'rxjs';
 export class RouterLoggerComponent implements OnInit, OnDestroy {
   _subscriptions: Subscription[] = [];
 
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {
+  constructor(private router: Router) {
     this._subscriptions.push(
       this.router.events.subscribe((event) => {
         if (event instanceof NavigationStart) {
@@ -32,6 +30,8 @@ export class RouterLoggerComponent implements OnInit, OnDestroy {
       })
     );
   }
+
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this._subscriptions.forEach((sub) => sub.unsubscribe());
