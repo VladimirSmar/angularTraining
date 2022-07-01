@@ -8,7 +8,7 @@ import { AuthService } from '../../shared/services/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  userName: string;
+  userName: string | undefined;
   userPhoto: string = '../../../../assets/images/thirduser.jpg';
   _subscriptions: Subscription[] = [];
 
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe((data) => {
-      this.userName = data.login;
+      this.userName = data?.login;
     });
   }
 
@@ -24,7 +24,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this._subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
-  logOutUser() {
+  logOutUser(event: Event): void {
+    event.preventDefault();
     this.authService.logOutUser();
   }
 }

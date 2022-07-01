@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of, delay, ReplaySubject } from 'rxjs';
 import { IAuthUser } from '../../auth/interfaces/authUser';
 
@@ -7,7 +8,9 @@ import { IAuthUser } from '../../auth/interfaces/authUser';
 })
 export class AuthService {
   currentUser: IAuthUser | undefined;
-  userSubj: ReplaySubject<IAuthUser> = new ReplaySubject<IAuthUser>()
+  userSubj: ReplaySubject<IAuthUser | undefined> = new ReplaySubject<
+    IAuthUser | undefined
+  >();
   users: IAuthUser[] = [
     {
       login: 'test',
@@ -15,7 +18,7 @@ export class AuthService {
     },
   ];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   verifyUser(userData: IAuthUser): Observable<IAuthUser | undefined> {
     let user = this.users.find((user: IAuthUser) => {
@@ -33,14 +36,15 @@ export class AuthService {
 
   logOutUser(): void {
     this.currentUser = undefined;
-    this.userSubj.next(this.currentUser!);
+    this.userSubj.next(this.currentUser);
+    this.router.navigate(['login']);
   }
 
   checkIfUserLoggedIn(): IAuthUser | undefined {
     return this.currentUser;
   }
 
-  getCurrentUser(): Observable<IAuthUser> {
+  getCurrentUser(): Observable<IAuthUser | undefined> {
     return this.userSubj.asObservable();
   }
 
