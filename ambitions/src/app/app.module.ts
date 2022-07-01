@@ -6,8 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HeaderModule } from './modules/core/header/header.module';
-import { UsersModule } from './modules/users/users.module';
-import { VehiclesModule } from './modules/vehicles/vehicles.module';
 
 import { RouterLoggerModule } from './modules/shared/components/router-logger/router-logger.module';
 
@@ -21,8 +19,6 @@ import { AuthModule } from './modules/auth/auth.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     AuthModule,
-    UsersModule,
-    VehiclesModule,
     RouterLoggerModule,
     FormsModule,
     HeaderModule,
