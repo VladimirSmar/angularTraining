@@ -4,11 +4,6 @@ import { LoginShellComponent } from './modules/auth/pages/login-shell/login-shel
 import { SignupShellComponent } from './modules/auth/pages/signup-shell/signup-shell.component';
 import { AuthGuard } from './modules/core/guards/auth.guard';
 
-import { LeaveEditUserGuard } from './modules/core/guards/leave-edit-user.guard';
-
-import { AddUserShellComponent } from './modules/users/pages/add-user-shell/add-user-shell.component';
-import { EditUserShellComponent } from './modules/users/pages/edit-user-shell/edit-user-shell.component';
-
 const routes: Routes = [
   {
     path: '',
@@ -38,17 +33,6 @@ const routes: Routes = [
       import('./modules/vehicles/vehicles.module').then(
         (module) => module.VehiclesModule
       ),
-  },
-  {
-    path: 'users/add',
-    canActivate: [AuthGuard],
-    component: AddUserShellComponent,
-  },
-  {
-    path: 'users/edit/:pageIndex/:id',
-    canActivate: [AuthGuard],
-    component: EditUserShellComponent,
-    canDeactivate: [LeaveEditUserGuard],
   },
 ];
 
