@@ -21,11 +21,10 @@ export class AuthService {
   constructor(private router: Router) {}
 
   verifyUser(userData: IAuthUser): Observable<IAuthUser | undefined> {
-    let user = this.users.find((user: IAuthUser) => {
-      return (
+    let user = this.users.find(
+      (user: IAuthUser) =>
         user.login === userData.login && user.password === userData.password
-      );
-    });
+    );
     return of(user).pipe(delay(1000));
   }
 
