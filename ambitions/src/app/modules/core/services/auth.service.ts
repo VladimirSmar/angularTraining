@@ -36,7 +36,6 @@ export class AuthService {
   logOutUser(): void {
     this.currentUser = undefined;
     this.userSubj.next(this.currentUser);
-    this.router.navigate(['login']);
   }
 
   checkIfUserLoggedIn(): IAuthUser | undefined {
