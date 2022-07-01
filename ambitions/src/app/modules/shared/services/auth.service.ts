@@ -1,0 +1,62 @@
+import { Injectable } from '@angular/core';
+import { Observable, of, delay, ReplaySubject } from 'rxjs';
+import { IAuthUser } from '../../auth/interfaces/authUser';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
+  currentUser: IAuthUser | undefined;
+  userSubj: ReplaySubject<IAuthUser> = new ReplaySubject<IAuthUser>()
+  users: IAuthUser[] = [
+    {
+      login: 'test',
+      password: 'test',
+    },
+  ];
+
+  constructor() {}
+
+  verifyUser(userData: IAuthUser): Observable<IAuthUser | undefined> {
+    let user = this.users.find((user: IAuthUser) => {
+      return (
+        user.login === userData.login && user.password === userData.password
+      );
+    });
+    return of(user).pipe(delay(1000));
+  }
+
+  loginUser(user: IAuthUser): void {
+    this.currentUser = user;
+    this.userSubj.next(this.currentUser);
+  }
+
+  logOutUser(): void {
+    this.currentUser = undefined;
+    this.userSubj.next(this.currentUser!);
+  }
+
+  checkIfUserLoggedIn(): IAuthUser | undefined {
+    return this.currentUser;
+  }
+
+  getCurrentUser(): Observable<IAuthUser> {
+    return this.userSubj.asObservable();
+  }
+
+  signupUser(
+    newUser: IAuthUser
+  ): Observable<{ status: boolean; message: string }> {
+    let message: string = '';
+    let status: boolean = true;
+    if (this.users.find((user: IAuthUser) => user.login == newUser.login)) {
+      message = 'This user already exist';
+      status = false;
+    } else {
+      this.users.push(newUser);
+      message =
+        'You have registered a new user with the name: ' + newUser.login;
+    }
+    return of({ message: message, status: status }).pipe(delay(1000));
+  }
+}

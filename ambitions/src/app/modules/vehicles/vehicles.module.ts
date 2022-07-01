@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { VehicleRoutingModule } from './vehicles-routing.module';
+
 import { CardModule } from '../shared/components/card/card.module';
 import { FavoritesModule } from '../shared/components/favorites/favorites.module';
 
@@ -20,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
     FavoritesModule,
     MatButtonModule,
     MatIconModule,
+    VehicleRoutingModule,
   ],
   exports: [VehiclesListShellComponent],
 })

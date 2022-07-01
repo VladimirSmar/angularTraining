@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { UsersRoutingModule } from './users-routing.module';
+
 import { CardModule } from '../shared/components/card/card.module';
 import { FavoritesModule } from '../shared/components/favorites/favorites.module';
 import { SearchModule } from '../shared/components/search/search.module';
@@ -36,6 +38,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   imports: [
     CommonModule,
     FormsModule,
+    UsersRoutingModule,
     MatButtonModule,
     CardModule,
     FavoritesModule,

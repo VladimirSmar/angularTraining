@@ -8,12 +8,15 @@
         (submit)="addNewUser()"
         novalidate
       >
-      <h4>Add user</h4>
+        <h4>Add user</h4>
         <app-add-user
           (emitUserFormEvent)="onUserFormInit($event)"
           [isFormInvalid]="isFormInvalid"
         ></app-add-user>
-        <app-addresses (emitAddressesFormsArrayEvent)="onAddressesFormsArrayInit($event)" [isFormInvalid]="isFormInvalid"></app-addresses>
+        <app-addresses
+          (emitAddressesFormsArrayEvent)="onAddressesFormsArrayInit($event)"
+          [isFormInvalid]="isFormInvalid"
+        ></app-addresses>
         <button class="add-user_submit-button" type="submit">Submit</button>
       </form>
     </div>

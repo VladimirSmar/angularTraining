@@ -1,0 +1,71 @@
+<form class="signup-form" [formGroup]="signupForm" novalidate>
+  <mat-form-field appearance="fill">
+    <mat-label>Login</mat-label>
+    <input
+      matInput
+      type="text"
+      name="login"
+      formControlName="login"
+      type="text"
+      placeholder="Ex. Pikachu"
+    />
+    <mat-error
+      *ngIf="signupForm.get('login')!.hasError('required') && isFormInvalid"
+    >
+      Login is required!
+    </mat-error>
+  </mat-form-field>
+
+  <div class="signup-form" formGroupName="passwordGroup">
+    <mat-form-field appearance="fill">
+      <mat-label>Password </mat-label>
+      <input
+        matInput
+        name="password"
+        formControlName="password"
+        type="password"
+        placeholder="Ex. Shiva552"
+      />
+      <mat-error
+        *ngIf="
+          signupForm
+            .get('passwordGroup')!
+            .get('password')!
+            .hasError('required') && isFormInvalid
+        "
+      >
+        Password is required!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label> Confirm password </mat-label>
+      <input
+        matInput
+        name="confirmPassword"
+        formControlName="confirmPassword"
+        type="password"
+      />
+      <mat-error
+        *ngIf="
+          signupForm
+            .get('passwordGroup')!
+            .get('confirmPassword')!
+            .hasError('required') && isFormInvalid
+        "
+      >
+        Enter your password here!!!
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <mat-error
+    *ngIf="
+      signupForm.get('passwordGroup')!.hasError('mismatch') && isFormInvalid
+    "
+  >
+    Passwords doesnt match!!!
+  </mat-error>
+</form>
+<mat-error *ngIf="isUserExists && !signupForm.touched">
+  This user already exists, try logging in!
+</mat-error>

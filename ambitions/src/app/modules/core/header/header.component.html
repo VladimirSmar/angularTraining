@@ -1,6 +1,5 @@
-<div class="header-container">
+<div class="header-container" *ngIf="userName; else unloggedUser">
   <div class="header">
-    <div class="header-title">Greetings, {{ username }}</div>
     <div class="header_item">
       <a class="header_item__link" routerLink="/users">Users</a>
     </div>
@@ -10,5 +9,24 @@
     <div class="header_item">
       <a class="header_item__link" routerLink="/users/add">Add New User</a>
     </div>
+    <div class="header-title">
+      <div class="user-menu">
+        <div class="user-name header_item">{{ userName }}</div>
+        <div class="user-menu_items">
+          <a href="#" class="header_item__link menu-item" (click)="logOutUser()"
+            >Log Out</a
+          >
+        </div>
+      </div>
+      <div><img class="user-photo" src="{{ userPhoto }}" alt="Photo" /></div>
+    </div>
   </div>
 </div>
+
+<ng-template #unloggedUser>
+  <div class="header">
+    <div class="header-title-unlogged">
+      Only those who shell login may see then truth behind the scene
+    </div>
+  </div>
+</ng-template>

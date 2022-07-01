@@ -1,0 +1,26 @@
+<div class="login-container">
+  <div class="login-form-wrapper">
+    <h2>Login</h2>
+
+    <form
+      class="login-shell-form"
+      [formGroup]="loginGroup"
+      (submit)="loginUser()"
+    >
+      <app-login
+        (emitLoginFormEvent)="onLoginFormInit($event)"
+        [isFormInvalid]="isFormInvalid"
+        [isUserExists]="isUserExists"
+      ></app-login>
+      <button
+        class="login-user_submit-button"
+        mat-stroked-button
+        color="primary"
+        type="submit"
+      >
+        Login
+      </button>
+    </form>
+    <small><a routerLink="/signup">Need an Account?</a></small>
+  </div>
+</div>

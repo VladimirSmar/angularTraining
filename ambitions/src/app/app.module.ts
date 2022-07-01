@@ -9,7 +9,10 @@ import { HeaderModule } from './modules/core/header/header.module';
 import { UsersModule } from './modules/users/users.module';
 import { VehiclesModule } from './modules/vehicles/vehicles.module';
 
+import { RouterLoggerModule } from './modules/shared/components/router-logger/router-logger.module';
+
 import { AppComponent } from './app.component';
+import { AuthModule } from './modules/auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,11 +20,13 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AuthModule,
     UsersModule,
     VehiclesModule,
+    RouterLoggerModule,
     FormsModule,
     HeaderModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
