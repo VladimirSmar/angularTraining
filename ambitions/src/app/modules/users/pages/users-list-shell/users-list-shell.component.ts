@@ -32,8 +32,8 @@ export class UsersListShellComponent implements OnInit, OnDestroy {
   pageSize: number = 6;
   pageSizeOptions: number[] = [6];
 
-  refreshClickSubject = new Subject();
-  onlyFirstClickSubject = new Subject();
+  refreshClickSubject = new Subject<void>();
+  onlyFirstClickSubject = new Subject<void>();
   exportSubj = new Subject();
   saveSubj = new Subject();
 

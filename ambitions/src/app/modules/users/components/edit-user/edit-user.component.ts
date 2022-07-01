@@ -60,6 +60,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
   onUserFormInit(userForm: any): void {
     this.userGroup.addControl('user', userForm);
+
     this.userGroup.get('user.email')!.clearAsyncValidators();
     this.userGroup.get('user.email')!.updateValueAndValidity();
 
