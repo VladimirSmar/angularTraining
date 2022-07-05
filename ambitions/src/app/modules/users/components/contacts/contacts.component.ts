@@ -9,7 +9,7 @@ import { UserDetailsService } from '../../services/user-details.service';
   styleUrls: ['./contacts.component.scss']
 })
 export class ContactsComponent implements OnInit, OnDestroy {
-  user: IUser;
+  user: IUser | null;
   _subscription: Subscription = new Subscription();
 
   constructor(private userDetailsService: UserDetailsService) { }

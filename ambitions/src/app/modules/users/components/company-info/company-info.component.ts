@@ -10,7 +10,7 @@ import { UserDetailsService } from '../../services/user-details.service';
 })
 export class CompanyInfoComponent implements OnInit, OnDestroy {
   myDate: number;
-  user: IUser;
+  user: IUser | null;
   _subscription: Subscription = new Subscription();
 
   constructor(private userDetailsService: UserDetailsService) {}

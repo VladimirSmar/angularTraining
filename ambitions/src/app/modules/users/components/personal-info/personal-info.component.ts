@@ -8,7 +8,7 @@ import { UserDetailsService } from '../../services/user-details.service';
   styleUrls: ['./personal-info.component.scss'],
 })
 export class PersonalInfoComponent implements OnInit, OnDestroy {
-  user: IUser;
+  user: IUser | null;
   _subscription: Subscription = new Subscription();
 
   constructor(private userDetailsService: UserDetailsService) {}
