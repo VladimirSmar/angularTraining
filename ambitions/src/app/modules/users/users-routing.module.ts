@@ -28,6 +28,7 @@ const routes: Routes = [
     path: 'view/:pageIndex/:id',
     component: UserDetailsShellComponent,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'company' },
       {
         path: 'company',
         component: CompanyInfoComponent,

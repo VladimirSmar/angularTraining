@@ -47,9 +47,6 @@ export class UserDetailsShellComponent implements OnInit, OnDestroy {
         this.user = user;
       })
     );
-    this.router.navigate(['company'], {
-      relativeTo: this.route,
-    });
   }
 
   ngOnDestroy(): void {
