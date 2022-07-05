@@ -16,7 +16,7 @@
           <img
             class="user-gender"
             [src]="user.gender | genderPipe"
-            alt="Gender"
+            alt="{{ user.gender }}"
           />
         </div>
         <div class="user-info">
@@ -24,7 +24,7 @@
           <img
             class="user-nat"
             [src]="user.nationality | nationalityPipe"
-            alt="Nat"
+            alt="{{ user.nationality }}"
           />
         </div>
         <div class="user-info">Phone: {{ user.phone }}</div>
