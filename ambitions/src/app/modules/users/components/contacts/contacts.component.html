@@ -1,3 +1,8 @@
 <div class="dummy-data">
-  HELP ME !!!!! I DONT KNOW HOW TO GET MY DATA
+  <img
+    *ngIf="user"
+    class="user-nat"
+    [src]="user.nationality | nationalityPipe"
+    alt="{{ user.nationality }}"
+  />
 </div>

@@ -1,4 +1,6 @@
 <div class="dummy-data">
-  Date of creation:
-  {{ myDate | date: "dd/MM/yyyy h:mm a" }}
+  <div *ngIf="user">
+    Date of creation: {{ myDate | date: "dd/MM/yyyy h:mm a" }} <br />
+    Headmaster: {{ user | fullNamePipe }}
+  </div>
 </div>

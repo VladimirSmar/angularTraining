@@ -3,6 +3,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { IUser } from '../../interfaces/user';
+import { UserDetailsService } from '../../services/user-details.service';
 import { UsersService } from '../../services/users.service';
 
 type InfoTabIndexMap = {
@@ -29,6 +30,7 @@ export class UserDetailsShellComponent implements OnInit, OnDestroy {
 
   constructor(
     private usersService: UsersService,
+    private userDetailsService: UserDetailsService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -45,6 +47,7 @@ export class UserDetailsShellComponent implements OnInit, OnDestroy {
     this._subscription.add(
       this.user$.subscribe((user) => {
         this.user = user;
+        this.userDetailsService.user.next(user);
       })
     );
   }

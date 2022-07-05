@@ -1,3 +1,8 @@
 <div class="dummy-data">
-  HELP CONTACTS, HE IS DUMB (and ill just steal the solution)
+  <img
+    *ngIf="user"
+    class="user-gender"
+    [src]="user.gender | genderPipe"
+    alt="{{ user.gender }}"
+  />
 </div>
