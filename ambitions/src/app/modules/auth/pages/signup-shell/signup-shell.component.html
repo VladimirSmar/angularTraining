@@ -6,6 +6,7 @@
       class="signup-shell-form"
       [formGroup]="signupGroup"
       (submit)="signupUser()"
+      novalidate
     >
       <app-signup
         (emitLoginFormEvent)="onSignupFormInit($event)"

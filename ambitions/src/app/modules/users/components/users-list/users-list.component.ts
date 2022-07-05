@@ -14,7 +14,8 @@ export class UsersListComponent implements OnInit {
   @Input() pageIndex: number;
   @Output() toggleIsFavoriteEvent: EventEmitter<IUser> =
     new EventEmitter<IUser>();
-  @Output() exportUserToExcelEvent: EventEmitter<string> = new EventEmitter<string>();
+  @Output() exportUserToExcelEvent: EventEmitter<string> =
+    new EventEmitter<string>();
   @Output() saveUserEvent: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
@@ -42,5 +43,9 @@ export class UsersListComponent implements OnInit {
 
   editUser(id: string): void {
     this.router.navigateByUrl(`/users/edit/${this.pageIndex}/${id}`);
+  }
+
+  viewUser(id: string): void {
+    this.router.navigateByUrl(`/users/view/${this.pageIndex}/${id}`);
   }
 }

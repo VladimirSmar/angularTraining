@@ -81,6 +81,7 @@ export class UsersListShellComponent implements OnInit, OnDestroy {
     this.pageIndex = event.pageIndex + 1;
     this.pageSize = event.pageSize;
     this.getUsers();
+    window.scrollTo(0, 0);
   }
 
   toggleIsFavorite(user: IUser): void {

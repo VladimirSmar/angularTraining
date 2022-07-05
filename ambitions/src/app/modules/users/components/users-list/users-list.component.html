@@ -2,7 +2,7 @@
   <ng-container *ngFor="let user of users">
     <app-card>
       <div class="title">
-        {{ user.firstName }} {{ user.lastName }}, <br />
+        {{ user | fullNamePipe }}, <br />
         {{ user.age }}
         <button mat-icon-button color="primary" (click)="editUser(user.id)">
           <mat-icon>edit</mat-icon>
@@ -11,8 +11,11 @@
       <div class="subtitle">{{ user.email }}</div>
       <img class="cardImage" src="{{ user.imageUrl }}" alt="Card Image" />
       <div class="cardContent">
-        <div class="user-info">Gender: {{ user.gender }}</div>
-        <div class="user-info">Nationality: {{ user.nationality }}</div>
+        <div class="user-info">Gender: {{ user.gender | genderPipe }}</div>
+        <div class="user-info">
+          Nationality:
+          <img src=" {{ user.nationality | nationalityPipe }}" alt="Nat" />
+        </div>
         <div class="user-info">Phone: {{ user.phone }}</div>
         <div class="address-list">
           <span class="address-list-title">Addresses:</span>
@@ -47,6 +50,9 @@
         </button>
         <button mat-icon-button (click)="saveUser(user.id)">
           <mat-icon>save</mat-icon>
+        </button>
+        <button mat-icon-button (click)="viewUser(user.id)">
+          <mat-icon>visibility</mat-icon>
         </button>
       </div>
     </app-card>
