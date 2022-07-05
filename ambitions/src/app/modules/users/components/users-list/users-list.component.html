@@ -11,10 +11,21 @@
       <div class="subtitle">{{ user.email }}</div>
       <img class="cardImage" src="{{ user.imageUrl }}" alt="Card Image" />
       <div class="cardContent">
-        <div class="user-info">Gender: {{ user.gender | genderPipe }}</div>
+        <div class="user-info">
+          Gender:
+          <img
+            class="user-gender"
+            [src]="user.gender | genderPipe"
+            alt="Gender"
+          />
+        </div>
         <div class="user-info">
           Nationality:
-          <img src=" {{ user.nationality | nationalityPipe }}" alt="Nat" />
+          <img
+            class="user-nat"
+            [src]="user.nationality | nationalityPipe"
+            alt="Nat"
+          />
         </div>
         <div class="user-info">Phone: {{ user.phone }}</div>
         <div class="address-list">
