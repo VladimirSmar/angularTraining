@@ -1,4 +1,4 @@
-.header {
+.ambitions-header {
   background-color: black;
   display: flex;
   flex-direction: row;
@@ -6,136 +6,133 @@
   align-items: center;
   flex-wrap: wrap;
   flex: 1 1 0;
-}
 
-.logo-container {
-  display: flex;
-  margin-right: auto;
-  padding-left: 20px;
-}
-
-.logo {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.logo-image {
-  width: 50px;
-}
-
-.header-title {
-  display: flex;
-  margin-left: auto;
-  padding-right: 20px;
-  align-items: center;
-  color: white;
-}
-
-.user-name {
-  padding-right: 10px;
-}
-
-.user-photo {
-  display: inline-block;
-  width: 50px;
-  border-radius: 35px;
-}
-
-.header-title-unlogged {
-  height: 50px;
-  display: flex;
-  margin: 0 auto;
-  align-items: center;
-  color: white;
-}
-
-.header_item {
-  display: inline-block;
-  background-color: black;
-  margin: 5px;
-  padding: 5px;
-}
-
-.header_item__link {
-  text-decoration: none;
-  color: white;
-}
-
-.user-name {
-  color: white;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.user-menu {
-  position: relative;
-  display: inline-block;
-  padding-right: 10px;
-}
-
-.user-menu:hover {
-  .user-menu_items {
-    display: block;
+  &__item {
+    display: inline-block;
+    background-color: black;
+    margin: 5px;
+    padding: 5px;
   }
 
-  .user-name {
-    color: #3e8e41;
+  &__logo-container {
+    display: flex;
+    margin-right: auto;
+    padding-left: 20px;
   }
-}
 
-.user-menu_items {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 127px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
+  &__logo-image {
+    width: 50px;
+  }
 
-.menu-item {
-  color: black;
-  padding: 12px 16px;
-  display: block;
-  cursor: pointer;
-}
+  &__link {
+    text-decoration: none;
+    color: white;
 
-.menu-item:hover {
-  color: #3e8e41;
-  border: 1px solid black;
-}
+    &--logo {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+    }
 
-.usersLink:hover {
-  color: red;
-}
+    &--users-active {
+      color: red;
+    }
 
-.users {
-  color: red;
-}
+    &--vehicles-active {
+      color: green;
+    }
 
-.vehiclesLink:hover {
-  color: green;
-}
+    &--uiTable-active {
+      color: purple;
+    }
 
-.vehicles {
-  color: green;
-}
+    &--serverTable-active {
+      color: yellow;
+    }
 
-.uiTableLink:hover {
-  color: purple;
-}
+    &--users:hover {
+      color: red;
+    }
 
-.uiTable {
-  color: purple;
-}
+    &--vehicles:hover {
+      color: green;
+    }
 
-.serverTableLink:hover {
-  color: yellow;
-}
+    &--uiTable:hover {
+      color: purple;
+    }
 
-.serverTable {
-  color: yellow;
+    &--serverTable:hover {
+      color: yellow;
+    }
+  }
+
+  &__title {
+    display: flex;
+    margin-left: auto;
+    padding-right: 20px;
+    align-items: center;
+    color: white;
+
+    &--unlogged {
+      height: 50px;
+      display: flex;
+      margin: 0 auto;
+      align-items: center;
+      color: white;
+    }
+  }
+
+  &__user-menu {
+    position: relative;
+    display: inline-block;
+    padding-right: 10px;
+
+    &:hover {
+      .ambitions-header__user-menu-items {
+        display: block;
+      }
+
+      .ambitions-header__username {
+        color: #3e8e41;
+      }
+    }
+
+    &-items {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 127px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    &-item {
+      color: black;
+      padding: 12px 16px;
+      display: block;
+      cursor: pointer;
+
+      &:hover {
+        color: #3e8e41;
+        border: 1px solid black;
+      }
+    }
+  }
+
+  &__username {
+    padding-right: 10px;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__user-photo {
+    display: inline-block;
+    width: 50px;
+    border-radius: 35px;
+  }
 }

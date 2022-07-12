@@ -13,18 +13,16 @@ import { UiTableService } from '../../services/ui-table.service';
 export class UiTableShellComponent implements OnInit, OnDestroy {
   tableLength: number = 128;
   _subscription: Subscription = new Subscription();
+  users: IUser[];
 
-  constructor(
-    private usersService: UsersService,
-    private uiTableService: UiTableService
-  ) {}
+  constructor(private usersService: UsersService) {}
 
   ngOnInit(): void {
     this._subscription.add(
       this.usersService
         .getUsers(0, this.tableLength)
         .subscribe((users: IUser[]) => {
-          this.uiTableService.users.next(users);
+          this.users = users;
         })
     );
   }

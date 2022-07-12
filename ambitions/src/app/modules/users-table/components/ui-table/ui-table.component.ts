@@ -1,17 +1,28 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { IUser } from 'src/app/modules/users/interfaces/user';
-import { UiTableService } from '../../services/ui-table.service';
 
 @Component({
   selector: 'app-ui-table',
   templateUrl: './ui-table.component.html',
   styleUrls: ['./ui-table.component.scss'],
 })
-export class UiTableComponent implements OnInit, AfterViewInit, OnDestroy {
+export class UiTableComponent
+  implements OnInit, AfterViewInit, OnChanges, OnDestroy
+{
+  @Input() users: IUser[];
   _subscription: Subscription = new Subscription();
   tableLength: number = 128;
   displayedColumns: string[] = ['name', 'email', 'age', 'gender', 'addresses'];
@@ -20,7 +31,7 @@ export class UiTableComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private uiTableService: UiTableService) {
+  constructor() {
     this.dataSource.sortingDataAccessor = (item: any, property: string) => {
       switch (property) {
         case 'name':
@@ -33,15 +44,16 @@ export class UiTableComponent implements OnInit, AfterViewInit, OnDestroy {
     };
   }
 
-  ngOnInit(): void {
-    this._subscription.add(
-      this.uiTableService.users.subscribe((users: IUser[]) => {
-        this.dataSource.data = users;
-      })
-    );
+  ngOnInit(): void {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['users'] && changes) {
+      this.dataSource.data = changes['users'].currentValue;
+    }
   }
+
   ngOnDestroy(): void {
-      this._subscription.unsubscribe();
+    this._subscription.unsubscribe();
   }
 
   ngAfterViewInit(): void {

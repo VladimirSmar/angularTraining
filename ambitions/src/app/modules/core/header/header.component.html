@@ -1,68 +1,78 @@
-<div class="header-container" *ngIf="userName; else unloggedUser">
-  <div class="header">
-    <div class="logo-container">
-      <a class="header_item__link logo" routerLink="/users"
-        ><img class="logo-image" src="{{ logo }}" alt="logo" />
+<div class="ambitions-header-container" *ngIf="userName; else unloggedUser">
+  <div class="ambitions-header">
+    <div class="ambitions-header__logo-container">
+      <a
+        class="ambitions-header__link ambitions-header__link--logo"
+        routerLink="/users"
+        ><img class="ambitions-header__logo-image" src="{{ logo }}" alt="logo" />
         <span [ngClass]="getLogoColor()">Ambitions</span></a
       >
     </div>
-    <div class="header_item">
+    <div class="ambitions-header__item">
       <a
-        class="header_item__link usersLink"
+        class="ambitions-header__link ambitions-header__link--users"
         routerLink="/users"
-        routerLinkActive="users"
+        routerLinkActive="ambitions-header__link--users-active"
         >Users</a
       >
     </div>
-    <div class="header_item">
+    <div class="ambitions-header__item">
       <a
-        class="header_item__link vehiclesLink"
+        class="ambitions-header__link ambitions-header__link--vehicles"
         routerLink="/vehicles"
-        routerLinkActive="vehicles"
+        routerLinkActive="ambitions-header__link--vehicles-active"
         >Vehicles</a
       >
     </div>
-    <div class="header_item">
+    <div class="ambitions-header__item">
       <a
-        class="header_item__link uiTableLink"
+        class="ambitions-header__link ambitions-header__link--uiTable"
         routerLink="/tables/uiTable"
-        routerLinkActive="uiTable"
+        routerLinkActive="ambitions-header__link--uiTable-active"
         >UI Table</a
       >
     </div>
-    <div class="header_item">
+    <div class="ambitions-header__item">
       <a
-        class="header_item__link serverTableLink"
+        class="ambitions-header__link ambitions-header__link--serverTable"
         routerLink="/tables/serverTable"
-        routerLinkActive="serverTable"
+        routerLinkActive="ambitions-header__link--serverTable-active"
         >Server Table</a
       >
     </div>
 
-    <div class="header-title">
-      <div class="user-menu">
-        <div class="user-name header_item">{{ userName }}</div>
-        <div class="user-menu_items">
-          <a class="header_item__link menu-item">Minions</a>
-          <a class="header_item__link menu-item">Rule</a>
+    <div class="ambitions-header__title">
+      <div class="ambitions-header__user-menu">
+        <div class="ambitions-header__item ambitions-header__username">
+          {{ userName }}
+        </div>
+        <div class="ambitions-header__user-menu-items">
+          <a class="ambitions-header__user-menu-item ambitions-header__link"
+            >Minions</a
+          >
+          <a class="ambitions-header__link ambitions-header__user-menu-item"
+            >Rule</a
+          >
           <a
             href="#"
-            class="header_item__link menu-item"
+            class="ambitions-header__link ambitions-header__user-menu-item"
             (click)="logOutUser($event)"
             [routerLink]="['/login']"
             >Log Out</a
           >
         </div>
       </div>
-      <div><img class="user-photo" src="{{ userPhoto }}" alt="Photo" /></div>
+      <div><img class="ambitions-header__user-photo" src="{{ userPhoto }}" alt="Photo" /></div>
     </div>
   </div>
 </div>
 
 <ng-template #unloggedUser>
-  <div class="header">
-    <div class="header-title-unlogged">
-      Only those who shell login may see then truth behind the scene
+  <div class="ambitions-header-container">
+    <div class="ambitions-header">
+      <div class="ambitions-header__title--unlogged">
+        Only those who shell login may see then truth behind the scene
+      </div>
     </div>
   </div>
 </ng-template>

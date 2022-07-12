@@ -29,13 +29,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   getLogoColor() {
     if (this.router.url.includes('/vehicles')) {
-      return 'vehicles';
+      return 'ambitions-header__link_vehicles-active';
     } else if (this.router.url.includes('/uiTable')) {
-      return 'uiTable';
+      return 'ambitions-header__link_uiTable-active';
     } else if (this.router.url.includes('/serverTable')) {
-      return 'serverTable';
+      return 'ambitions-header__link_serverTable-active';
     } else if (this.router.url.includes('/users')) {
-      return 'users';
+      return 'ambitions-header__link_users-active';
     } else {
       return '';
     }
