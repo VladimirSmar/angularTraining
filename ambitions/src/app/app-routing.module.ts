@@ -31,6 +31,13 @@ const routes: Routes = [
             (module) => module.VehiclesModule
           ),
       },
+      {
+        path: 'tables',
+        loadChildren: () =>
+          import('./modules/users-table/users-table.module').then(
+            (module) => module.UsersTableModule
+          ),
+      },
     ],
   },
 ];

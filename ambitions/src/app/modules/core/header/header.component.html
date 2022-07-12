@@ -1,18 +1,58 @@
 <div class="header-container" *ngIf="userName; else unloggedUser">
   <div class="header">
-    <div class="header_item">
-      <a class="header_item__link" routerLink="/users">Users</a>
+    <div class="logo-container">
+      <a class="header_item__link logo" routerLink="/users"
+        ><img class="logo-image" src="{{ logo }}" alt="logo" />
+        <span [ngClass]="getLogoColor()">Ambitions</span></a
+      >
     </div>
     <div class="header_item">
-      <a class="header_item__link" routerLink="/vehicles">Vehicles</a>
+      <a
+        class="header_item__link usersLink"
+        routerLink="/users"
+        routerLinkActive="users"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Users</a
+      >
     </div>
     <div class="header_item">
-      <a class="header_item__link" routerLink="/users/add">Add New User</a>
+      <a
+        class="header_item__link vehiclesLink"
+        routerLink="/vehicles"
+        routerLinkActive="vehicles"
+        >Vehicles</a
+      >
+    </div>
+    <div class="header_item">
+      <a
+        class="header_item__link uiTableLink"
+        routerLink="/tables/uiTable"
+        routerLinkActive="uiTable"
+        >UI Table</a
+      >
+    </div>
+    <div class="header_item">
+      <a
+        class="header_item__link serverTableLink"
+        routerLink="/tables/serverTable"
+        routerLinkActive="serverTable"
+        >Server Table</a
+      >
+    </div>
+    <div class="header_item">
+      <a
+        class="header_item__link newUserLink"
+        routerLink="/users/add"
+        routerLinkActive="newUser"
+        >Add New User</a
+      >
     </div>
     <div class="header-title">
       <div class="user-menu">
         <div class="user-name header_item">{{ userName }}</div>
         <div class="user-menu_items">
+          <a class="header_item__link menu-item">Minions</a>
+          <a class="header_item__link menu-item">Rule</a>
           <a
             href="#"
             class="header_item__link menu-item"

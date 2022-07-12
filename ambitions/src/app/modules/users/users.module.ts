@@ -28,10 +28,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { CompanyInfoComponent } from './components/company-info/company-info.component';
 import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
-
-import { FullNamePipe } from '../shared/pipes/full-name.pipe';
-import { GenderPipe } from '../shared/pipes/gender-pipe.pipe';
-import { NationalityPipe } from '../shared/pipes/nationality.pipe';
+import { PipeModule } from '../shared/modules/pipe-module.module';
 
 @NgModule({
   declarations: [
@@ -47,9 +44,6 @@ import { NationalityPipe } from '../shared/pipes/nationality.pipe';
     CompanyInfoComponent,
     PersonalInfoComponent,
     ContactsComponent,
-    FullNamePipe,
-    GenderPipe,
-    NationalityPipe,
   ],
   imports: [
     CommonModule,
@@ -66,6 +60,7 @@ import { NationalityPipe } from '../shared/pipes/nationality.pipe';
     SearchModule,
     MatPaginatorModule,
     MatTabsModule,
+    PipeModule
   ],
   exports: [UsersListShellComponent],
 })
