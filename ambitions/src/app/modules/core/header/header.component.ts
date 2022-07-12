@@ -34,8 +34,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       return 'uiTable';
     } else if (this.router.url.includes('/serverTable')) {
       return 'serverTable';
-    } else if (this.router.url.includes('/users/add')) {
-      return 'newUser';
     } else if (this.router.url.includes('/users')) {
       return 'users';
     } else {

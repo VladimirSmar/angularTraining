@@ -11,7 +11,6 @@
         class="header_item__link usersLink"
         routerLink="/users"
         routerLinkActive="users"
-        [routerLinkActiveOptions]="{ exact: true }"
         >Users</a
       >
     </div>
@@ -39,14 +38,7 @@
         >Server Table</a
       >
     </div>
-    <div class="header_item">
-      <a
-        class="header_item__link newUserLink"
-        routerLink="/users/add"
-        routerLinkActive="newUser"
-        >Add New User</a
-      >
-    </div>
+
     <div class="header-title">
       <div class="user-menu">
         <div class="user-name header_item">{{ userName }}</div>

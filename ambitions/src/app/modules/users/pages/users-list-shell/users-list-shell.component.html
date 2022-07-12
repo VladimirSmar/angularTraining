@@ -4,13 +4,16 @@
       class="search-field"
       (searchInputChanged)="getUsers($event)"
     ></app-search>
-    <button mat-stroked-button class="refresh-button" color="primary" (click)="refreshClickSubject.next()">
+    <button mat-stroked-button class="higher-button" color="primary" routerLink="/users/add">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-stroked-button class="higher-button" color="primary" (click)="refreshClickSubject.next()">
       <mat-icon>refresh</mat-icon>
     </button>
 
     <button
       mat-stroked-button
-      class="only-one-button"
+      class="higher-button"
       color="primary"
       (click)="onlyFirstClickSubject.next()"
     >
