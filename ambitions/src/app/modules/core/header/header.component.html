@@ -4,7 +4,11 @@
       <a
         class="ambitions-header__link ambitions-header__link--logo"
         routerLink="/users"
-        ><img class="ambitions-header__logo-image" src="{{ logo }}" alt="logo" />
+        ><img
+          class="ambitions-header__logo-image"
+          src="{{ logo }}"
+          alt="logo"
+        />
         <span [ngClass]="getLogoColor()">Ambitions</span></a
       >
     </div>
@@ -62,7 +66,13 @@
           >
         </div>
       </div>
-      <div><img class="ambitions-header__user-photo" src="{{ userPhoto }}" alt="Photo" /></div>
+      <div>
+        <img
+          class="ambitions-header__user-photo"
+          src="{{ userPhoto }}"
+          alt="Photo"
+        />
+      </div>
     </div>
   </div>
 </div>

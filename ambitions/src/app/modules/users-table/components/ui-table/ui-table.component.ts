@@ -19,11 +19,8 @@ import { IUser } from 'src/app/modules/users/interfaces/user';
   templateUrl: './ui-table.component.html',
   styleUrls: ['./ui-table.component.scss'],
 })
-export class UiTableComponent
-  implements OnInit, AfterViewInit, OnChanges, OnDestroy
-{
+export class UiTableComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() users: IUser[];
-  _subscription: Subscription = new Subscription();
   tableLength: number = 128;
   displayedColumns: string[] = ['name', 'email', 'age', 'gender', 'addresses'];
   dataSource: MatTableDataSource<IUser> = new MatTableDataSource<IUser>([]);
@@ -50,10 +47,6 @@ export class UiTableComponent
     if (changes['users'] && changes) {
       this.dataSource.data = changes['users'].currentValue;
     }
-  }
-
-  ngOnDestroy(): void {
-    this._subscription.unsubscribe();
   }
 
   ngAfterViewInit(): void {
